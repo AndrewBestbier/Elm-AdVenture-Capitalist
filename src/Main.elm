@@ -5,7 +5,7 @@ import Html exposing (Html, button, div, h1, h3, h4, text)
 import Html.Attributes exposing (disabled, src)
 import Html.Events exposing (onClick)
 import Round
-import Time exposing (Time, second)
+import Time exposing (Time, millisecond)
 
 
 ---- MODEL ----
@@ -40,7 +40,7 @@ type Msg
     | Tick Time
 
 getProfit model =
-    Dict.foldl (\key x acc -> acc + x.quantity * x.productivity) 0 model.config
+    Dict.foldl (\key x acc -> acc + x.quantity * x.productivity * 0.1) 0 model.config
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -69,7 +69,7 @@ update msg model =
 -- SUBSCRIPTIONS
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Time.every second Tick
+    Time.every (100*millisecond) Tick
 
 ---- VIEW ----
 getCost model business =
