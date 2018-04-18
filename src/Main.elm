@@ -9,11 +9,8 @@ import Time exposing (Time, second)
 
 
 ---- MODEL ----
-
-
 type alias Config =
     { quantity : Float, cost : Float, productivity : Float, coefficient : Float }
-
 
 baseConfig : Dict.Dict String Config
 baseConfig =
@@ -30,28 +27,20 @@ baseConfig =
         , ( "Oil Company", { quantity = 0, cost = 25798901760, productivity = 804816, coefficient = 1.07 } )
         ]
 
-
 type alias Model =
     { money : Float, config : Dict.Dict String Config }
-
 
 init : ( Model, Cmd Msg )
 init =
     ( { money = 1, config = baseConfig }, Cmd.none )
 
-
-
 ---- UPDATE ----
-
-
 type Msg
     = Purchase String
     | Tick Time
 
-
 getProfit model =
     Dict.foldl (\key x acc -> acc + x.quantity * x.productivity) 0 model.config
-
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -77,21 +66,12 @@ update msg model =
         Tick _ ->
             ( { model | money = model.money + getProfit model }, Cmd.none )
 
-
-
 -- SUBSCRIPTIONS
-
-
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Time.every second Tick
 
-
-
--- 36502679
 ---- VIEW ----
-
-
 getCost model business =
     case Dict.get business model.config of
         Just x ->
@@ -99,7 +79,6 @@ getCost model business =
 
         Nothing ->
             0
-
 
 getProductivity model business =
     case Dict.get business model.config of
@@ -109,7 +88,6 @@ getProductivity model business =
         Nothing ->
             0
 
-
 getMultiplier model business =
     case Dict.get business model.config of
         Just x ->
@@ -117,7 +95,6 @@ getMultiplier model business =
 
         Nothing ->
             0
-
 
 view : Model -> Html Msg
 view model =
@@ -135,7 +112,6 @@ view model =
         , businessDetails model "Oil Company"
         ]
 
-
 businessDetails model business =
     div []
         [ h3 [] [ text business ]
@@ -145,11 +121,7 @@ businessDetails model business =
         , button [ onClick (Purchase business), disabled (model.money < getCost model business) ] [ text ("Buy " ++ business) ]
         ]
 
-
-
 ---- PROGRAM ----
-
-
 main : Program Never Model Msg
 main =
     Html.program
