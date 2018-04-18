@@ -1,0 +1,275 @@
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$stateAttribute = function (state) {
+	var _p0 = state;
+	switch (_p0.ctor) {
+		case 'On':
+			return _elm_lang$html$Html_Attributes$checked(true);
+		case 'Off':
+			return _elm_lang$html$Html_Attributes$checked(false);
+		default:
+			return A2(_elm_lang$html$Html_Attributes$attribute, 'indeterminate', 'true');
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$toAttributes = function (options) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$classList(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'form-check-input', _1: !options.custom},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'custom-control-input', _1: options.custom},
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$disabled(options.disabled),
+					_1: {
+						ctor: '::',
+						_0: _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$stateAttribute(options.state),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		},
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				{
+					ctor: '::',
+					_0: A2(_elm_lang$core$Maybe$map, _elm_lang$html$Html_Events$onCheck, options.onChecked),
+					_1: {
+						ctor: '::',
+						_0: A2(_elm_lang$core$Maybe$map, _elm_lang$html$Html_Attributes$id, options.id),
+						_1: {ctor: '[]'}
+					}
+				}),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				function () {
+					var _p1 = options.validation;
+					if (_p1.ctor === 'Just') {
+						return {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class(
+								_rundis$elm_bootstrap$Bootstrap_Form_FormInternal$validationToString(_p1._0)),
+							_1: {ctor: '[]'}
+						};
+					} else {
+						return {ctor: '[]'};
+					}
+				}(),
+				options.attributes)));
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$applyModifier = F2(
+	function (modifier, options) {
+		var _p2 = modifier;
+		switch (_p2.ctor) {
+			case 'Id':
+				return _elm_lang$core$Native_Utils.update(
+					options,
+					{
+						id: _elm_lang$core$Maybe$Just(_p2._0)
+					});
+			case 'Value':
+				return _elm_lang$core$Native_Utils.update(
+					options,
+					{state: _p2._0});
+			case 'Inline':
+				return _elm_lang$core$Native_Utils.update(
+					options,
+					{inline: true});
+			case 'OnChecked':
+				return _elm_lang$core$Native_Utils.update(
+					options,
+					{
+						onChecked: _elm_lang$core$Maybe$Just(_p2._0)
+					});
+			case 'Custom':
+				return _elm_lang$core$Native_Utils.update(
+					options,
+					{custom: true});
+			case 'Disabled':
+				return _elm_lang$core$Native_Utils.update(
+					options,
+					{disabled: _p2._0});
+			case 'Validation':
+				return _elm_lang$core$Native_Utils.update(
+					options,
+					{
+						validation: _elm_lang$core$Maybe$Just(_p2._0)
+					});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					options,
+					{
+						attributes: A2(_elm_lang$core$Basics_ops['++'], options.attributes, _p2._0)
+					});
+		}
+	});
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Options = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {id: a, state: b, inline: c, custom: d, disabled: e, onChecked: f, validation: g, attributes: h};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Checkbox = function (a) {
+	return {ctor: 'Checkbox', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$create = F2(
+	function (options, label) {
+		return _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Checkbox(
+			{options: options, label: label});
+	});
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Attrs = function (a) {
+	return {ctor: 'Attrs', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$attrs = function (attrs) {
+	return _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Attrs(attrs);
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Validation = function (a) {
+	return {ctor: 'Validation', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$success = _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Validation(_rundis$elm_bootstrap$Bootstrap_Form_FormInternal$Success);
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$danger = _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Validation(_rundis$elm_bootstrap$Bootstrap_Form_FormInternal$Danger);
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Disabled = function (a) {
+	return {ctor: 'Disabled', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$disabled = function (disabled) {
+	return _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Disabled(disabled);
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Custom = {ctor: 'Custom'};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$OnChecked = function (a) {
+	return {ctor: 'OnChecked', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$onCheck = function (toMsg) {
+	return _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$OnChecked(toMsg);
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Inline = {ctor: 'Inline'};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$inline = _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Inline;
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Value = function (a) {
+	return {ctor: 'Value', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Id = function (a) {
+	return {ctor: 'Id', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$id = function (theId) {
+	return _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Id(theId);
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Indeterminate = {ctor: 'Indeterminate'};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$indeterminate = _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Value(_rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Indeterminate);
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Off = {ctor: 'Off'};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$defaultOptions = {
+	id: _elm_lang$core$Maybe$Nothing,
+	state: _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Off,
+	inline: false,
+	custom: false,
+	disabled: false,
+	onChecked: _elm_lang$core$Maybe$Nothing,
+	validation: _elm_lang$core$Maybe$Nothing,
+	attributes: {ctor: '[]'}
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$view = function (_p3) {
+	var _p4 = _p3;
+	var _p6 = _p4._0;
+	var opts = A3(_elm_lang$core$List$foldl, _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$applyModifier, _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$defaultOptions, _p6.options);
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$classList(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'form-check', _1: !opts.custom},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'form-check-inline', _1: (!opts.custom) && opts.inline},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'custom-control', _1: opts.custom},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'custom-checkbox', _1: opts.custom},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'custom-control-inline', _1: opts.inline && opts.custom},
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$input,
+				_rundis$elm_bootstrap$Bootstrap_Form_Checkbox$toAttributes(opts),
+				{ctor: '[]'}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$label,
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$classList(
+								{
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'form-check-label', _1: !opts.custom},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'custom-control-label', _1: opts.custom},
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						},
+						function () {
+							var _p5 = opts.id;
+							if (_p5.ctor === 'Just') {
+								return {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$for(_p5._0),
+									_1: {ctor: '[]'}
+								};
+							} else {
+								return {ctor: '[]'};
+							}
+						}()),
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(_p6.label),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$checkbox = F2(
+	function (options, label) {
+		return _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$view(
+			A2(_rundis$elm_bootstrap$Bootstrap_Form_Checkbox$create, options, label));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$custom = function (options) {
+	return function (_p7) {
+		return _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$view(
+			A2(
+				_rundis$elm_bootstrap$Bootstrap_Form_Checkbox$create,
+				{ctor: '::', _0: _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Custom, _1: options},
+				_p7));
+	};
+};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$On = {ctor: 'On'};
+var _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$checked = function (isCheck) {
+	return _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Value(
+		isCheck ? _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$On : _rundis$elm_bootstrap$Bootstrap_Form_Checkbox$Off);
+};

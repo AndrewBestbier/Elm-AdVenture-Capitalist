@@ -1,26 +1,39 @@
-var _user$project$Main$getMultiplier = F2(
+var _user$project$Main$getProgress = F2(
 	function (model, business) {
 		var _p0 = A2(_elm_lang$core$Dict$get, business, model.config);
 		if (_p0.ctor === 'Just') {
-			return _p0._0.quantity;
+			return (_elm_lang$core$Basics$toFloat(
+				A2(
+					_elm_lang$core$Basics_ops['%'],
+					_elm_lang$core$Basics$round(_p0._0.quantity),
+					25)) / 25) * 100;
+		} else {
+			return 0;
+		}
+	});
+var _user$project$Main$getQuantity = F2(
+	function (model, business) {
+		var _p1 = A2(_elm_lang$core$Dict$get, business, model.config);
+		if (_p1.ctor === 'Just') {
+			return _p1._0.quantity;
 		} else {
 			return 0;
 		}
 	});
 var _user$project$Main$getProductivity = F2(
 	function (model, business) {
-		var _p1 = A2(_elm_lang$core$Dict$get, business, model.config);
-		if (_p1.ctor === 'Just') {
-			return _p1._0.productivity;
+		var _p2 = A2(_elm_lang$core$Dict$get, business, model.config);
+		if (_p2.ctor === 'Just') {
+			return _p2._0.productivity;
 		} else {
 			return 0;
 		}
 	});
 var _user$project$Main$getCost = F2(
 	function (model, business) {
-		var _p2 = A2(_elm_lang$core$Dict$get, business, model.config);
-		if (_p2.ctor === 'Just') {
-			return _p2._0.cost;
+		var _p3 = A2(_elm_lang$core$Dict$get, business, model.config);
+		if (_p3.ctor === 'Just') {
+			return _p3._0.cost;
 		} else {
 			return 0;
 		}
@@ -37,34 +50,34 @@ var _user$project$Main$getProfit = function (model) {
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p3 = msg;
-		if (_p3.ctor === 'Purchase') {
-			var _p6 = _p3._0;
+		var _p4 = msg;
+		if (_p4.ctor === 'Purchase') {
+			var _p7 = _p4._0;
 			return {
 				ctor: '_Tuple2',
 				_0: _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						money: model.money - A2(_user$project$Main$getCost, model, _p6),
+						money: model.money - A2(_user$project$Main$getCost, model, _p7),
 						config: A3(
 							_elm_lang$core$Dict$update,
-							_p6,
+							_p7,
 							function (x) {
-								var _p4 = x;
-								if (_p4.ctor === 'Just') {
-									var _p5 = _p4._0;
+								var _p5 = x;
+								if (_p5.ctor === 'Just') {
+									var _p6 = _p5._0;
 									return _elm_lang$core$Maybe$Just(
 										_elm_lang$core$Native_Utils.update(
-											_p5,
+											_p6,
 											{
-												quantity: _p5.quantity + 1,
-												cost: _p5.cost * _p5.coefficient,
+												quantity: _p6.quantity + 1,
+												cost: _p6.cost * _p6.coefficient,
 												productivity: _elm_lang$core$Native_Utils.eq(
 													A2(
 														_elm_lang$core$Basics_ops['%'],
-														_elm_lang$core$Basics$round(_p5.quantity + 1),
+														_elm_lang$core$Basics$round(_p6.quantity + 1),
 														25),
-													0) ? (_p5.productivity * 2.0) : _p5.productivity
+													0) ? (_p6.productivity * 2.0) : _p6.productivity
 											}));
 								} else {
 									return _elm_lang$core$Maybe$Nothing;
@@ -150,15 +163,7 @@ var _user$project$Main$baseConfig = _elm_lang$core$Dict$fromList(
 											_0: 'Bank',
 											_1: {quantity: 0, cost: 2149908480, productivity: 174960, coefficient: 1.08}
 										},
-										_1: {
-											ctor: '::',
-											_0: {
-												ctor: '_Tuple2',
-												_0: 'Oil Company',
-												_1: {quantity: 0, cost: 25798901760, productivity: 804816, coefficient: 1.07}
-											},
-											_1: {ctor: '[]'}
-										}
+										_1: {ctor: '[]'}
 									}
 								}
 							}
@@ -192,160 +197,260 @@ var _user$project$Main$Purchase = function (a) {
 };
 var _user$project$Main$businessDetails = F2(
 	function (model, business) {
-		return A2(
-			_elm_lang$html$Html$div,
+		return A3(
+			_rundis$elm_bootstrap$Bootstrap_Card$block,
 			{ctor: '[]'},
 			{
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$h3,
+					_rundis$elm_bootstrap$Bootstrap_Card_Block$text,
 					{ctor: '[]'},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text(business),
+						_0: _elm_lang$html$Html$text(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'Cost: £',
+								A2(
+									_myrho$elm_round$Round$round,
+									2,
+									A2(_user$project$Main$getCost, model, business)))),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$h4,
+						_rundis$elm_bootstrap$Bootstrap_Card_Block$text,
 						{ctor: '[]'},
 						{
 							ctor: '::',
 							_0: _elm_lang$html$Html$text(
 								A2(
 									_elm_lang$core$Basics_ops['++'],
-									'Cost: £',
+									'Productivity: £',
 									A2(
-										_myrho$elm_round$Round$round,
-										2,
-										A2(_user$project$Main$getCost, model, business)))),
+										_elm_lang$core$Basics_ops['++'],
+										_elm_lang$core$Basics$toString(
+											A2(_user$project$Main$getProductivity, model, business)),
+										A2(_elm_lang$core$Basics_ops['++'], '/s ', 'each')))),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$h4,
+							_rundis$elm_bootstrap$Bootstrap_Card_Block$text,
 							{ctor: '[]'},
 							{
 								ctor: '::',
 								_0: _elm_lang$html$Html$text(
 									A2(
 										_elm_lang$core$Basics_ops['++'],
-										'Productivity: £',
-										A2(
-											_elm_lang$core$Basics_ops['++'],
-											_elm_lang$core$Basics$toString(
-												A2(_user$project$Main$getProductivity, model, business)),
-											A2(
-												_elm_lang$core$Basics_ops['++'],
-												'/s ',
-												A2(_elm_lang$core$Basics_ops['++'], 'per ', business))))),
+										'Quantity: ',
+										_elm_lang$core$Basics$toString(
+											A2(_user$project$Main$getQuantity, model, business)))),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
 							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$h4,
-								{ctor: '[]'},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text(
-										A2(
-											_elm_lang$core$Basics_ops['++'],
-											'Quantity: ',
-											_elm_lang$core$Basics$toString(
-												A2(_user$project$Main$getMultiplier, model, business)))),
-									_1: {ctor: '[]'}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$button,
+							_0: _rundis$elm_bootstrap$Bootstrap_Card_Block$custom(
+								A2(
+									_elm_lang$html$Html$div,
+									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onClick(
-											_user$project$Main$Purchase(business)),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$disabled(
-												_elm_lang$core$Native_Utils.cmp(
-													model.money,
-													A2(_user$project$Main$getCost, model, business)) < 0),
-											_1: {ctor: '[]'}
-										}
-									},
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html$text(
-											A2(_elm_lang$core$Basics_ops['++'], 'Buy ', business)),
+										_0: _elm_lang$html$Html$text('Progress to productivity upgrade:'),
 										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				}
-			});
-	});
-var _user$project$Main$view = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$h1,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'£',
-							A2(_myrho$elm_round$Round$round, 2, model.money))),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(_user$project$Main$businessDetails, model, 'Lemonade Stand'),
-				_1: {
-					ctor: '::',
-					_0: A2(_user$project$Main$businessDetails, model, 'Newspaper Delivery'),
-					_1: {
-						ctor: '::',
-						_0: A2(_user$project$Main$businessDetails, model, 'Car Wash'),
-						_1: {
-							ctor: '::',
-							_0: A2(_user$project$Main$businessDetails, model, 'Pizza Delivery'),
+									})),
 							_1: {
 								ctor: '::',
-								_0: A2(_user$project$Main$businessDetails, model, 'Donut Shop'),
+								_0: _rundis$elm_bootstrap$Bootstrap_Card_Block$custom(
+									A2(
+										_elm_lang$html$Html$div,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$style(
+												{
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '0.5rem'},
+													_1: {
+														ctor: '::',
+														_0: {ctor: '_Tuple2', _0: 'margin-bottom', _1: '2rem'},
+														_1: {ctor: '[]'}
+													}
+												}),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: _rundis$elm_bootstrap$Bootstrap_Progress$progress(
+												{
+													ctor: '::',
+													_0: _rundis$elm_bootstrap$Bootstrap_Progress$value(
+														A2(_user$project$Main$getProgress, model, business)),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										})),
 								_1: {
 									ctor: '::',
-									_0: A2(_user$project$Main$businessDetails, model, 'Shrimp Boat'),
-									_1: {
-										ctor: '::',
-										_0: A2(_user$project$Main$businessDetails, model, 'Hockey Team'),
-										_1: {
-											ctor: '::',
-											_0: A2(_user$project$Main$businessDetails, model, 'Movie Studio'),
-											_1: {
+									_0: _rundis$elm_bootstrap$Bootstrap_Card_Block$custom(
+										A2(
+											_rundis$elm_bootstrap$Bootstrap_Button$button,
+											{
 												ctor: '::',
-												_0: A2(_user$project$Main$businessDetails, model, 'Bank'),
+												_0: _rundis$elm_bootstrap$Bootstrap_Button$success,
 												_1: {
 													ctor: '::',
-													_0: A2(_user$project$Main$businessDetails, model, 'Oil Company'),
-													_1: {ctor: '[]'}
+													_0: _rundis$elm_bootstrap$Bootstrap_Button$onClick(
+														_user$project$Main$Purchase(business)),
+													_1: {
+														ctor: '::',
+														_0: _rundis$elm_bootstrap$Bootstrap_Button$disabled(
+															_elm_lang$core$Native_Utils.cmp(
+																model.money,
+																A2(_user$project$Main$getCost, model, business)) < 0),
+														_1: {ctor: '[]'}
+													}
 												}
-											}
-										}
-									}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Buy'),
+												_1: {ctor: '[]'}
+											})),
+									_1: {ctor: '[]'}
 								}
 							}
 						}
 					}
 				}
+			},
+			A3(
+				_rundis$elm_bootstrap$Bootstrap_Card$header,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('text-center'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$h3,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(business),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				_rundis$elm_bootstrap$Bootstrap_Card$config(
+					{
+						ctor: '::',
+						_0: _rundis$elm_bootstrap$Bootstrap_Card$attrs(
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'width', _1: '20rem'},
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					})));
+	});
+var _user$project$Main$view = function (model) {
+	return A2(
+		_rundis$elm_bootstrap$Bootstrap_Grid$container,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _rundis$elm_bootstrap$Bootstrap_CDN$stylesheet,
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_rundis$elm_bootstrap$Bootstrap_Grid$row,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_rundis$elm_bootstrap$Bootstrap_Grid$col,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$h1,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(
+											{
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'font-size', _1: '5rem'},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 'color', _1: 'white'},
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												'£',
+												A2(_myrho$elm_round$Round$round, 2, model.money))),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: _rundis$elm_bootstrap$Bootstrap_Card$columns(
+										{
+											ctor: '::',
+											_0: A2(_user$project$Main$businessDetails, model, 'Lemonade Stand'),
+											_1: {
+												ctor: '::',
+												_0: A2(_user$project$Main$businessDetails, model, 'Newspaper Delivery'),
+												_1: {
+													ctor: '::',
+													_0: A2(_user$project$Main$businessDetails, model, 'Car Wash'),
+													_1: {
+														ctor: '::',
+														_0: A2(_user$project$Main$businessDetails, model, 'Pizza Delivery'),
+														_1: {
+															ctor: '::',
+															_0: A2(_user$project$Main$businessDetails, model, 'Donut Shop'),
+															_1: {
+																ctor: '::',
+																_0: A2(_user$project$Main$businessDetails, model, 'Shrimp Boat'),
+																_1: {
+																	ctor: '::',
+																	_0: A2(_user$project$Main$businessDetails, model, 'Hockey Team'),
+																	_1: {
+																		ctor: '::',
+																		_0: A2(_user$project$Main$businessDetails, model, 'Movie Studio'),
+																		_1: {
+																			ctor: '::',
+																			_0: A2(_user$project$Main$businessDetails, model, 'Bank'),
+																			_1: {ctor: '[]'}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
 			}
 		});
 };

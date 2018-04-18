@@ -1,0 +1,338 @@
+var _rundis$elm_bootstrap$Bootstrap_Alert$headingPrivate = F3(
+	function (elemFn, attributes, children) {
+		return A2(
+			elemFn,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('alert-header'),
+				_1: attributes
+			},
+			children);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$h6 = F2(
+	function (attributes, children) {
+		return A3(_rundis$elm_bootstrap$Bootstrap_Alert$headingPrivate, _elm_lang$html$Html$h6, attributes, children);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$h5 = F2(
+	function (attributes, children) {
+		return A3(_rundis$elm_bootstrap$Bootstrap_Alert$headingPrivate, _elm_lang$html$Html$h5, attributes, children);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$h4 = F2(
+	function (attributes, children) {
+		return A3(_rundis$elm_bootstrap$Bootstrap_Alert$headingPrivate, _elm_lang$html$Html$h4, attributes, children);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$h3 = F2(
+	function (attributes, children) {
+		return A3(_rundis$elm_bootstrap$Bootstrap_Alert$headingPrivate, _elm_lang$html$Html$h3, attributes, children);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$h2 = F2(
+	function (attributes, children) {
+		return A3(_rundis$elm_bootstrap$Bootstrap_Alert$headingPrivate, _elm_lang$html$Html$h2, attributes, children);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$h1 = F2(
+	function (attributes, children) {
+		return A3(_rundis$elm_bootstrap$Bootstrap_Alert$headingPrivate, _elm_lang$html$Html$h1, attributes, children);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$link = F2(
+	function (attributes, children) {
+		return A2(
+			_elm_lang$html$Html$a,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('alert-link'),
+				_1: attributes
+			},
+			children);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$isDismissable = function (configRec) {
+	var _p0 = configRec.dismissable;
+	if (_p0.ctor === 'Just') {
+		return true;
+	} else {
+		return false;
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Alert$injectButton = F2(
+	function (btn, children) {
+		var _p1 = children;
+		if (_p1.ctor === '::') {
+			return {
+				ctor: '::',
+				_0: _p1._0,
+				_1: {ctor: '::', _0: btn, _1: _p1._1}
+			};
+		} else {
+			return {
+				ctor: '::',
+				_0: btn,
+				_1: {ctor: '[]'}
+			};
+		}
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$ConfigRec = F6(
+	function (a, b, c, d, e, f) {
+		return {visibility: a, dismissable: b, attributes: c, children: d, role: e, withAnimation: f};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Alert$role = F2(
+	function (role, _p2) {
+		var _p3 = _p2;
+		return _rundis$elm_bootstrap$Bootstrap_Alert$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p3._0,
+				{role: role}));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$primary = function (config) {
+	return A2(_rundis$elm_bootstrap$Bootstrap_Alert$role, _rundis$elm_bootstrap$Bootstrap_Internal_Role$Primary, config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Alert$secondary = function (config) {
+	return A2(_rundis$elm_bootstrap$Bootstrap_Alert$role, _rundis$elm_bootstrap$Bootstrap_Internal_Role$Secondary, config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Alert$success = function (config) {
+	return A2(_rundis$elm_bootstrap$Bootstrap_Alert$role, _rundis$elm_bootstrap$Bootstrap_Internal_Role$Success, config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Alert$info = function (config) {
+	return A2(_rundis$elm_bootstrap$Bootstrap_Alert$role, _rundis$elm_bootstrap$Bootstrap_Internal_Role$Info, config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Alert$warning = function (config) {
+	return A2(_rundis$elm_bootstrap$Bootstrap_Alert$role, _rundis$elm_bootstrap$Bootstrap_Internal_Role$Warning, config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Alert$danger = function (config) {
+	return A2(_rundis$elm_bootstrap$Bootstrap_Alert$role, _rundis$elm_bootstrap$Bootstrap_Internal_Role$Danger, config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Alert$dark = function (config) {
+	return A2(_rundis$elm_bootstrap$Bootstrap_Alert$role, _rundis$elm_bootstrap$Bootstrap_Internal_Role$Dark, config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Alert$light = function (config) {
+	return A2(_rundis$elm_bootstrap$Bootstrap_Alert$role, _rundis$elm_bootstrap$Bootstrap_Internal_Role$Light, config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Alert$attrs = F2(
+	function (attributes, _p4) {
+		var _p5 = _p4;
+		return _rundis$elm_bootstrap$Bootstrap_Alert$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p5._0,
+				{attributes: attributes}));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$dismissable = F2(
+	function (dismissMsg, _p6) {
+		var _p7 = _p6;
+		return _rundis$elm_bootstrap$Bootstrap_Alert$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p7._0,
+				{
+					dismissable: _elm_lang$core$Maybe$Just(dismissMsg)
+				}));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$dismissableWithAnimation = F2(
+	function (dismissMsg, _p8) {
+		var _p9 = _p8;
+		return _rundis$elm_bootstrap$Bootstrap_Alert$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p9._0,
+				{
+					dismissable: _elm_lang$core$Maybe$Just(dismissMsg),
+					withAnimation: true
+				}));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$children = F2(
+	function (children, _p10) {
+		var _p11 = _p10;
+		return _rundis$elm_bootstrap$Bootstrap_Alert$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p11._0,
+				{children: children}));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$Closed = {ctor: 'Closed'};
+var _rundis$elm_bootstrap$Bootstrap_Alert$closed = _rundis$elm_bootstrap$Bootstrap_Alert$Closed;
+var _rundis$elm_bootstrap$Bootstrap_Alert$FadeClose = {ctor: 'FadeClose'};
+var _rundis$elm_bootstrap$Bootstrap_Alert$subscriptions = F2(
+	function (visibility, animateMsg) {
+		var _p12 = visibility;
+		if (_p12.ctor === 'StartClose') {
+			return _elm_lang$animation_frame$AnimationFrame$times(
+				function (_p13) {
+					return animateMsg(_rundis$elm_bootstrap$Bootstrap_Alert$FadeClose);
+				});
+		} else {
+			return _elm_lang$core$Platform_Sub$none;
+		}
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$StartClose = {ctor: 'StartClose'};
+var _rundis$elm_bootstrap$Bootstrap_Alert$clickHandler = F2(
+	function (visibility, configRec) {
+		var handleClick = F2(
+			function (viz, toMsg) {
+				return _elm_lang$html$Html_Events$onClick(
+					toMsg(viz));
+			});
+		var _p14 = configRec.dismissable;
+		if (_p14.ctor === 'Just') {
+			var _p15 = _p14._0;
+			return {
+				ctor: '::',
+				_0: configRec.withAnimation ? A2(handleClick, _rundis$elm_bootstrap$Bootstrap_Alert$StartClose, _p15) : A2(handleClick, _rundis$elm_bootstrap$Bootstrap_Alert$Closed, _p15),
+				_1: {ctor: '[]'}
+			};
+		} else {
+			return {ctor: '[]'};
+		}
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$maybeAddDismissButton = F3(
+	function (visibilty, configRec, children) {
+		return _rundis$elm_bootstrap$Bootstrap_Alert$isDismissable(configRec) ? A2(
+			_rundis$elm_bootstrap$Bootstrap_Alert$injectButton,
+			A2(
+				_elm_lang$html$Html$button,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$type_('button'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('close'),
+							_1: {
+								ctor: '::',
+								_0: A2(_elm_lang$html$Html_Attributes$attribute, 'aria-label', 'close'),
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					A2(_rundis$elm_bootstrap$Bootstrap_Alert$clickHandler, visibilty, configRec)),
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: A2(_elm_lang$html$Html_Attributes$attribute, 'aria-hidden', 'true'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('×'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			children) : children;
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$Shown = {ctor: 'Shown'};
+var _rundis$elm_bootstrap$Bootstrap_Alert$shown = _rundis$elm_bootstrap$Bootstrap_Alert$Shown;
+var _rundis$elm_bootstrap$Bootstrap_Alert$config = _rundis$elm_bootstrap$Bootstrap_Alert$Config(
+	{
+		visibility: _rundis$elm_bootstrap$Bootstrap_Alert$Shown,
+		dismissable: _elm_lang$core$Maybe$Nothing,
+		attributes: {ctor: '[]'},
+		children: {ctor: '[]'},
+		role: _rundis$elm_bootstrap$Bootstrap_Internal_Role$Secondary,
+		withAnimation: false
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$viewAttributes = F2(
+	function (visibility, configRec) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: A2(_elm_lang$html$Html_Attributes$attribute, 'role', 'alert'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$classList(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'alert', _1: true},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 'alert-dismissible',
+									_1: _rundis$elm_bootstrap$Bootstrap_Alert$isDismissable(configRec)
+								},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'fade', _1: configRec.withAnimation},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: 'show',
+											_1: _elm_lang$core$Native_Utils.eq(visibility, _rundis$elm_bootstrap$Bootstrap_Alert$Shown)
+										},
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(_rundis$elm_bootstrap$Bootstrap_Internal_Role$toClass, 'alert', configRec.role),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			_elm_lang$core$Native_Utils.eq(visibility, _rundis$elm_bootstrap$Bootstrap_Alert$Closed) ? {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'display', _1: 'none'},
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			} : A2(
+				_elm_lang$core$Basics_ops['++'],
+				{ctor: '[]'},
+				function () {
+					if (configRec.withAnimation) {
+						var _p16 = configRec.dismissable;
+						if (_p16.ctor === 'Just') {
+							return {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html_Events$on,
+									'transitionend',
+									_elm_lang$core$Json_Decode$succeed(
+										_p16._0(_rundis$elm_bootstrap$Bootstrap_Alert$Closed))),
+								_1: {ctor: '[]'}
+							};
+						} else {
+							return {ctor: '[]'};
+						}
+					} else {
+						return {ctor: '[]'};
+					}
+				}()));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$view = F2(
+	function (visibility, _p17) {
+		var _p18 = _p17;
+		var _p19 = _p18._0;
+		return A2(
+			_elm_lang$html$Html$div,
+			A2(_rundis$elm_bootstrap$Bootstrap_Alert$viewAttributes, visibility, _p19),
+			A3(_rundis$elm_bootstrap$Bootstrap_Alert$maybeAddDismissButton, visibility, _p19, _p19.children));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$simple = F3(
+	function (role_, attributes, children_) {
+		return A2(
+			_rundis$elm_bootstrap$Bootstrap_Alert$view,
+			_rundis$elm_bootstrap$Bootstrap_Alert$Shown,
+			A2(
+				_rundis$elm_bootstrap$Bootstrap_Alert$children,
+				children_,
+				A2(
+					_rundis$elm_bootstrap$Bootstrap_Alert$attrs,
+					attributes,
+					A2(_rundis$elm_bootstrap$Bootstrap_Alert$role, role_, _rundis$elm_bootstrap$Bootstrap_Alert$config))));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Alert$simplePrimary = _rundis$elm_bootstrap$Bootstrap_Alert$simple(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Primary);
+var _rundis$elm_bootstrap$Bootstrap_Alert$simpleSecondary = _rundis$elm_bootstrap$Bootstrap_Alert$simple(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Secondary);
+var _rundis$elm_bootstrap$Bootstrap_Alert$simpleSuccess = _rundis$elm_bootstrap$Bootstrap_Alert$simple(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Success);
+var _rundis$elm_bootstrap$Bootstrap_Alert$simpleInfo = _rundis$elm_bootstrap$Bootstrap_Alert$simple(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Info);
+var _rundis$elm_bootstrap$Bootstrap_Alert$simpleWarning = _rundis$elm_bootstrap$Bootstrap_Alert$simple(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Warning);
+var _rundis$elm_bootstrap$Bootstrap_Alert$simpleDanger = _rundis$elm_bootstrap$Bootstrap_Alert$simple(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Danger);
+var _rundis$elm_bootstrap$Bootstrap_Alert$simpleDark = _rundis$elm_bootstrap$Bootstrap_Alert$simple(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Dark);
+var _rundis$elm_bootstrap$Bootstrap_Alert$simpleLight = _rundis$elm_bootstrap$Bootstrap_Alert$simple(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Light);

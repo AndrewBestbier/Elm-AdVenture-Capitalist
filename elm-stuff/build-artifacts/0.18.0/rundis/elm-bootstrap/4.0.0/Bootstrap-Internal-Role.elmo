@@ -1,0 +1,39 @@
+var _rundis$elm_bootstrap$Bootstrap_Internal_Role$toClass = F2(
+	function (prefix, role) {
+		return _elm_lang$html$Html_Attributes$class(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				prefix,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'-',
+					function () {
+						var _p0 = role;
+						switch (_p0.ctor) {
+							case 'Primary':
+								return 'primary';
+							case 'Secondary':
+								return 'secondary';
+							case 'Success':
+								return 'success';
+							case 'Info':
+								return 'info';
+							case 'Warning':
+								return 'warning';
+							case 'Danger':
+								return 'danger';
+							case 'Light':
+								return 'light';
+							default:
+								return 'dark';
+						}
+					}())));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Internal_Role$Dark = {ctor: 'Dark'};
+var _rundis$elm_bootstrap$Bootstrap_Internal_Role$Light = {ctor: 'Light'};
+var _rundis$elm_bootstrap$Bootstrap_Internal_Role$Danger = {ctor: 'Danger'};
+var _rundis$elm_bootstrap$Bootstrap_Internal_Role$Warning = {ctor: 'Warning'};
+var _rundis$elm_bootstrap$Bootstrap_Internal_Role$Info = {ctor: 'Info'};
+var _rundis$elm_bootstrap$Bootstrap_Internal_Role$Success = {ctor: 'Success'};
+var _rundis$elm_bootstrap$Bootstrap_Internal_Role$Secondary = {ctor: 'Secondary'};
+var _rundis$elm_bootstrap$Bootstrap_Internal_Role$Primary = {ctor: 'Primary'};

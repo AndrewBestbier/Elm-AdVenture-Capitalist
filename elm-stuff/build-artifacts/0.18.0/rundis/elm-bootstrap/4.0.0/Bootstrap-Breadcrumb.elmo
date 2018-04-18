@@ -1,0 +1,85 @@
+var _rundis$elm_bootstrap$Bootstrap_Breadcrumb$toListItems = function (items) {
+	var _p0 = items;
+	if (_p0.ctor === '[]') {
+		return {ctor: '[]'};
+	} else {
+		if (_p0._1.ctor === '[]') {
+			return {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$li,
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p0._0._0,
+						{
+							ctor: '::',
+							_0: A2(_elm_lang$html$Html_Attributes$attribute, 'aria-current', 'page'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('breadcrumb-item active'),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_p0._0._1),
+				_1: {ctor: '[]'}
+			};
+		} else {
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$li,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_p0._0._0,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('breadcrumb-item'),
+								_1: {ctor: '[]'}
+							}),
+						_p0._0._1),
+					_1: {ctor: '[]'}
+				},
+				_rundis$elm_bootstrap$Bootstrap_Breadcrumb$toListItems(_p0._1));
+		}
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Breadcrumb$container = function (items) {
+	var _p1 = items;
+	if (_p1.ctor === '[]') {
+		return _elm_lang$html$Html$text('');
+	} else {
+		return A2(
+			_elm_lang$html$Html$nav,
+			{
+				ctor: '::',
+				_0: A2(_elm_lang$html$Html_Attributes$attribute, 'aria-label', 'breadcrumb'),
+				_1: {
+					ctor: '::',
+					_0: A2(_elm_lang$html$Html_Attributes$attribute, 'role', 'navigation'),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$ol,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('breadcrumb'),
+						_1: {ctor: '[]'}
+					},
+					_rundis$elm_bootstrap$Bootstrap_Breadcrumb$toListItems(items)),
+				_1: {ctor: '[]'}
+			});
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Breadcrumb$Item = F2(
+	function (a, b) {
+		return {ctor: 'Item', _0: a, _1: b};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Breadcrumb$item = F2(
+	function (attributes, children) {
+		return A2(_rundis$elm_bootstrap$Bootstrap_Breadcrumb$Item, attributes, children);
+	});

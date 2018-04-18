@@ -1,0 +1,623 @@
+var _rundis$elm_bootstrap$Bootstrap_Modal$closeButton = function (closeMsg) {
+	return A2(
+		_elm_lang$html$Html$button,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('close'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onClick(closeMsg),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text('×'),
+			_1: {ctor: '[]'}
+		});
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$renderFooter = function (maybeFooter) {
+	var _p0 = maybeFooter;
+	if (_p0.ctor === 'Just') {
+		var _p1 = _p0._0._0;
+		return _elm_lang$core$Maybe$Just(
+			A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('modal-footer'),
+					_1: _p1.attributes
+				},
+				_p1.children));
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$renderBody = function (maybeBody) {
+	var _p2 = maybeBody;
+	if (_p2.ctor === 'Just') {
+		var _p3 = _p2._0._0;
+		return _elm_lang$core$Maybe$Just(
+			A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('modal-body'),
+					_1: _p3.attributes
+				},
+				_p3.children));
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$modalClass = function (size) {
+	var _p4 = _rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeOption(size);
+	if (_p4.ctor === 'Just') {
+		return {
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class(
+				A2(_elm_lang$core$Basics_ops['++'], 'modal-', _p4._0)),
+			_1: {ctor: '[]'}
+		};
+	} else {
+		return {ctor: '[]'};
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$modalAttributes = function (options) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$classList(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'modal-dialog', _1: true},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'modal-dialog-centered', _1: options.centered},
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'pointer-events', _1: 'auto'},
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		},
+		A2(
+			_elm_lang$core$Maybe$withDefault,
+			{ctor: '[]'},
+			A2(_elm_lang$core$Maybe$map, _rundis$elm_bootstrap$Bootstrap_Modal$modalClass, options.modalSize)));
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$isFade = function (config) {
+	return A2(
+		_elm_lang$core$Maybe$withDefault,
+		false,
+		A2(
+			_elm_lang$core$Maybe$map,
+			function (_p5) {
+				return true;
+			},
+			config.withAnimation));
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$display = F2(
+	function (visibility, config) {
+		var _p6 = visibility;
+		switch (_p6.ctor) {
+			case 'Show':
+				return {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'pointer-events', _1: 'none'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$classList(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'modal', _1: true},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 'fade',
+										_1: _rundis$elm_bootstrap$Bootstrap_Modal$isFade(config)
+									},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'show', _1: true},
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
+				};
+			case 'StartClose':
+				return {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'pointer-events', _1: 'none'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$classList(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'modal', _1: true},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'fade', _1: true},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'show', _1: true},
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
+				};
+			case 'FadeClose':
+				return {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'pointer-events', _1: 'none'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$classList(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'modal', _1: true},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'fade', _1: true},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'show', _1: false},
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html_Events$on,
+								'transitionend',
+								_elm_lang$core$Json_Decode$succeed(config.closeMsg)),
+							_1: {ctor: '[]'}
+						}
+					}
+				};
+			default:
+				return {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'height', _1: '0px'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$classList(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'modal', _1: true},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 'fade',
+										_1: _rundis$elm_bootstrap$Bootstrap_Modal$isFade(config)
+									},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'show', _1: false},
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
+				};
+		}
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$ConfigRec = F6(
+	function (a, b, c, d, e, f) {
+		return {closeMsg: a, withAnimation: b, header: c, body: d, footer: e, options: f};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$Options = F3(
+	function (a, b, c) {
+		return {modalSize: a, hideOnBackdropClick: b, centered: c};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$Item = F2(
+	function (a, b) {
+		return {attributes: a, children: b};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$Hide = {ctor: 'Hide'};
+var _rundis$elm_bootstrap$Bootstrap_Modal$hidden = _rundis$elm_bootstrap$Bootstrap_Modal$Hide;
+var _rundis$elm_bootstrap$Bootstrap_Modal$FadeClose = {ctor: 'FadeClose'};
+var _rundis$elm_bootstrap$Bootstrap_Modal$subscriptions = F2(
+	function (visibility, animateMsg) {
+		var _p7 = visibility;
+		if (_p7.ctor === 'StartClose') {
+			return _elm_lang$animation_frame$AnimationFrame$times(
+				function (_p8) {
+					return animateMsg(_rundis$elm_bootstrap$Bootstrap_Modal$FadeClose);
+				});
+		} else {
+			return _elm_lang$core$Platform_Sub$none;
+		}
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$StartClose = {ctor: 'StartClose'};
+var _rundis$elm_bootstrap$Bootstrap_Modal$hiddenAnimated = _rundis$elm_bootstrap$Bootstrap_Modal$StartClose;
+var _rundis$elm_bootstrap$Bootstrap_Modal$getCloseMsg = function (config) {
+	var _p9 = config.withAnimation;
+	if (_p9.ctor === 'Just') {
+		return _p9._0(_rundis$elm_bootstrap$Bootstrap_Modal$StartClose);
+	} else {
+		return config.closeMsg;
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$renderHeader = function (_p10) {
+	var _p11 = _p10;
+	var _p12 = _p11.header;
+	if (_p12.ctor === 'Just') {
+		var _p13 = _p12._0._0;
+		return _elm_lang$core$Maybe$Just(
+			A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('modal-header'),
+					_1: _p13.attributes
+				},
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_p13.children,
+					{
+						ctor: '::',
+						_0: _rundis$elm_bootstrap$Bootstrap_Modal$closeButton(
+							_rundis$elm_bootstrap$Bootstrap_Modal$getCloseMsg(_p11)),
+						_1: {ctor: '[]'}
+					})));
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$backdrop = F2(
+	function (visibility, config) {
+		var attributes = function () {
+			var _p14 = visibility;
+			switch (_p14.ctor) {
+				case 'Show':
+					return A2(
+						_elm_lang$core$Basics_ops['++'],
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$classList(
+								{
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'modal-backdrop', _1: true},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: 'fade',
+											_1: _rundis$elm_bootstrap$Bootstrap_Modal$isFade(config)
+										},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'show', _1: true},
+											_1: {ctor: '[]'}
+										}
+									}
+								}),
+							_1: {ctor: '[]'}
+						},
+						config.options.hideOnBackdropClick ? {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onClick(
+								_rundis$elm_bootstrap$Bootstrap_Modal$getCloseMsg(config)),
+							_1: {ctor: '[]'}
+						} : {ctor: '[]'});
+				case 'StartClose':
+					return {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$classList(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'modal-backdrop', _1: true},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'fade', _1: true},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'show', _1: true},
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					};
+				case 'FadeClose':
+					return {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$classList(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'modal-backdrop', _1: true},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'fade', _1: true},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'show', _1: false},
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					};
+				default:
+					return {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$classList(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'modal-backdrop', _1: false},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 'fade',
+										_1: _rundis$elm_bootstrap$Bootstrap_Modal$isFade(config)
+									},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'show', _1: false},
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					};
+			}
+		}();
+		return {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				attributes,
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$view = F2(
+	function (visibility, _p15) {
+		var _p16 = _p15;
+		var _p17 = _p16._0;
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$tabindex(-1),
+								_1: {ctor: '[]'}
+							},
+							A2(_rundis$elm_bootstrap$Bootstrap_Modal$display, visibility, _p17)),
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{
+									ctor: '::',
+									_0: A2(_elm_lang$html$Html_Attributes$attribute, 'role', 'document'),
+									_1: _rundis$elm_bootstrap$Bootstrap_Modal$modalAttributes(_p16._0.options)
+								},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('modal-content'),
+											_1: {ctor: '[]'}
+										},
+										A2(
+											_elm_lang$core$List$filterMap,
+											_elm_lang$core$Basics$identity,
+											{
+												ctor: '::',
+												_0: _rundis$elm_bootstrap$Bootstrap_Modal$renderHeader(_p17),
+												_1: {
+													ctor: '::',
+													_0: _rundis$elm_bootstrap$Bootstrap_Modal$renderBody(_p16._0.body),
+													_1: {
+														ctor: '::',
+														_0: _rundis$elm_bootstrap$Bootstrap_Modal$renderFooter(_p16._0.footer),
+														_1: {ctor: '[]'}
+													}
+												}
+											})),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				A2(_rundis$elm_bootstrap$Bootstrap_Modal$backdrop, visibility, _p17)));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$Show = {ctor: 'Show'};
+var _rundis$elm_bootstrap$Bootstrap_Modal$shown = _rundis$elm_bootstrap$Bootstrap_Modal$Show;
+var _rundis$elm_bootstrap$Bootstrap_Modal$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$small = function (_p18) {
+	var _p19 = _p18;
+	return _rundis$elm_bootstrap$Bootstrap_Modal$Config(
+		_elm_lang$core$Native_Utils.update(
+			_p19._0,
+			{
+				options: _elm_lang$core$Native_Utils.update(
+					_p19._0.options,
+					{
+						modalSize: _elm_lang$core$Maybe$Just(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM)
+					})
+			}));
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$large = function (_p20) {
+	var _p21 = _p20;
+	return _rundis$elm_bootstrap$Bootstrap_Modal$Config(
+		_elm_lang$core$Native_Utils.update(
+			_p21._0,
+			{
+				options: _elm_lang$core$Native_Utils.update(
+					_p21._0.options,
+					{
+						modalSize: _elm_lang$core$Maybe$Just(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG)
+					})
+			}));
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$hideOnBackdropClick = F2(
+	function (hide, _p22) {
+		var _p23 = _p22;
+		return _rundis$elm_bootstrap$Bootstrap_Modal$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p23._0,
+				{
+					options: _elm_lang$core$Native_Utils.update(
+						_p23._0.options,
+						{hideOnBackdropClick: hide})
+				}));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$withAnimation = F2(
+	function (animateMsg, _p24) {
+		var _p25 = _p24;
+		return _rundis$elm_bootstrap$Bootstrap_Modal$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p25._0,
+				{
+					withAnimation: _elm_lang$core$Maybe$Just(animateMsg)
+				}));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$config = function (closeMsg) {
+	return _rundis$elm_bootstrap$Bootstrap_Modal$Config(
+		{
+			closeMsg: closeMsg,
+			withAnimation: _elm_lang$core$Maybe$Nothing,
+			options: {modalSize: _elm_lang$core$Maybe$Nothing, hideOnBackdropClick: true, centered: true},
+			header: _elm_lang$core$Maybe$Nothing,
+			body: _elm_lang$core$Maybe$Nothing,
+			footer: _elm_lang$core$Maybe$Nothing
+		});
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$Header = function (a) {
+	return {ctor: 'Header', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$header = F3(
+	function (attributes, children, _p26) {
+		var _p27 = _p26;
+		return _rundis$elm_bootstrap$Bootstrap_Modal$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p27._0,
+				{
+					header: _elm_lang$core$Maybe$Just(
+						_rundis$elm_bootstrap$Bootstrap_Modal$Header(
+							{attributes: attributes, children: children}))
+				}));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$titledHeader = F3(
+	function (itemFn, attributes, children) {
+		return A2(
+			_rundis$elm_bootstrap$Bootstrap_Modal$header,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					itemFn,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('modal-title'),
+						_1: attributes
+					},
+					children),
+				_1: {ctor: '[]'}
+			});
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$h1 = _rundis$elm_bootstrap$Bootstrap_Modal$titledHeader(_elm_lang$html$Html$h1);
+var _rundis$elm_bootstrap$Bootstrap_Modal$h2 = _rundis$elm_bootstrap$Bootstrap_Modal$titledHeader(_elm_lang$html$Html$h2);
+var _rundis$elm_bootstrap$Bootstrap_Modal$h3 = _rundis$elm_bootstrap$Bootstrap_Modal$titledHeader(_elm_lang$html$Html$h3);
+var _rundis$elm_bootstrap$Bootstrap_Modal$h4 = _rundis$elm_bootstrap$Bootstrap_Modal$titledHeader(_elm_lang$html$Html$h4);
+var _rundis$elm_bootstrap$Bootstrap_Modal$h5 = _rundis$elm_bootstrap$Bootstrap_Modal$titledHeader(_elm_lang$html$Html$h5);
+var _rundis$elm_bootstrap$Bootstrap_Modal$h6 = _rundis$elm_bootstrap$Bootstrap_Modal$titledHeader(_elm_lang$html$Html$h6);
+var _rundis$elm_bootstrap$Bootstrap_Modal$Body = function (a) {
+	return {ctor: 'Body', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$body = F3(
+	function (attributes, children, _p28) {
+		var _p29 = _p28;
+		return _rundis$elm_bootstrap$Bootstrap_Modal$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p29._0,
+				{
+					body: _elm_lang$core$Maybe$Just(
+						_rundis$elm_bootstrap$Bootstrap_Modal$Body(
+							{attributes: attributes, children: children}))
+				}));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Modal$Footer = function (a) {
+	return {ctor: 'Footer', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Modal$footer = F3(
+	function (attributes, children, _p30) {
+		var _p31 = _p30;
+		return _rundis$elm_bootstrap$Bootstrap_Modal$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p31._0,
+				{
+					footer: _elm_lang$core$Maybe$Just(
+						_rundis$elm_bootstrap$Bootstrap_Modal$Footer(
+							{attributes: attributes, children: children}))
+				}));
+	});

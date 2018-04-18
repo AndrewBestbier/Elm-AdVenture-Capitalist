@@ -1,0 +1,1423 @@
+var _rundis$elm_bootstrap$Bootstrap_Navbar$toRGBString = function (color) {
+	var _p0 = _elm_lang$core$Color$toRgb(color);
+	var red = _p0.red;
+	var green = _p0.green;
+	var blue = _p0.blue;
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		'RGB(',
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			_elm_lang$core$Basics$toString(red),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				',',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(green),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						',',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString(blue),
+							')'))))));
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$backgroundColorOption = function (bgClass) {
+	var _p1 = bgClass;
+	switch (_p1.ctor) {
+		case 'Roled':
+			return A2(_rundis$elm_bootstrap$Bootstrap_Internal_Role$toClass, 'bg', _p1._0);
+		case 'Custom':
+			return _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'background-color',
+						_1: _rundis$elm_bootstrap$Bootstrap_Navbar$toRGBString(_p1._0)
+					},
+					_1: {ctor: '[]'}
+				});
+		default:
+			return _elm_lang$html$Html_Attributes$class(_p1._0);
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$linkModifierClass = function (modifier) {
+	return _elm_lang$html$Html_Attributes$class(
+		function () {
+			var _p2 = modifier;
+			if (_p2.ctor === 'Dark') {
+				return 'navbar-dark';
+			} else {
+				return 'navbar-light';
+			}
+		}());
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$schemeAttributes = function (_p3) {
+	var _p4 = _p3;
+	return {
+		ctor: '::',
+		_0: _rundis$elm_bootstrap$Bootstrap_Navbar$linkModifierClass(_p4.modifier),
+		_1: {
+			ctor: '::',
+			_0: _rundis$elm_bootstrap$Bootstrap_Navbar$backgroundColorOption(_p4.bgColor),
+			_1: {ctor: '[]'}
+		}
+	};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$fixOption = function (fix) {
+	var _p5 = fix;
+	if (_p5.ctor === 'Top') {
+		return 'fixed-top';
+	} else {
+		return 'fixed-bottom';
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$expandOption = function (size) {
+	var toClass = function (sz) {
+		return _elm_lang$html$Html_Attributes$class(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'navbar-expand',
+				A2(
+					_elm_lang$core$Maybe$withDefault,
+					'',
+					A2(
+						_elm_lang$core$Maybe$map,
+						function (s) {
+							return A2(_elm_lang$core$Basics_ops['++'], '-', s);
+						},
+						_rundis$elm_bootstrap$Bootstrap_Grid_Internal$screenSizeOption(sz)))));
+	};
+	var _p6 = size;
+	switch (_p6.ctor) {
+		case 'XS':
+			return {
+				ctor: '::',
+				_0: toClass(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM),
+				_1: {ctor: '[]'}
+			};
+		case 'SM':
+			return {
+				ctor: '::',
+				_0: toClass(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD),
+				_1: {ctor: '[]'}
+			};
+		case 'MD':
+			return {
+				ctor: '::',
+				_0: toClass(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG),
+				_1: {ctor: '[]'}
+			};
+		case 'LG':
+			return {
+				ctor: '::',
+				_0: toClass(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL),
+				_1: {ctor: '[]'}
+			};
+		default:
+			return {ctor: '[]'};
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$navbarAttributes = function (options) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$classList(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'navbar', _1: true},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'container', _1: options.isContainer},
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			_rundis$elm_bootstrap$Bootstrap_Navbar$expandOption(options.toggleAt),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				function () {
+					var _p7 = options.scheme;
+					if (_p7.ctor === 'Just') {
+						return _rundis$elm_bootstrap$Bootstrap_Navbar$schemeAttributes(_p7._0);
+					} else {
+						return {ctor: '[]'};
+					}
+				}(),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					function () {
+						var _p8 = options.fix;
+						if (_p8.ctor === 'Just') {
+							return {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class(
+									_rundis$elm_bootstrap$Bootstrap_Navbar$fixOption(_p8._0)),
+								_1: {ctor: '[]'}
+							};
+						} else {
+							return {ctor: '[]'};
+						}
+					}(),
+					options.attributes))));
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$renderCustom = function (items) {
+	return A2(
+		_elm_lang$core$List$map,
+		function (_p9) {
+			var _p10 = _p9;
+			return _p10._0;
+		},
+		items);
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$renderItemLink = function (_p11) {
+	var _p12 = _p11;
+	return A2(
+		_elm_lang$html$Html$li,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('nav-item'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$a,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('nav-link'),
+						_1: {ctor: '[]'}
+					},
+					_p12.attributes),
+				_p12.children),
+			_1: {ctor: '[]'}
+		});
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$maybeBrand = function (brand) {
+	var _p13 = brand;
+	if (_p13.ctor === 'Just') {
+		return {
+			ctor: '::',
+			_0: _p13._0._0,
+			_1: {ctor: '[]'}
+		};
+	} else {
+		return {ctor: '[]'};
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$transitionStyle = function (maybeHeight) {
+	var pixelHeight = A2(
+		_elm_lang$core$Maybe$withDefault,
+		'0',
+		A2(
+			_elm_lang$core$Maybe$map,
+			function (v) {
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(v),
+					'px');
+			},
+			maybeHeight));
+	return _elm_lang$html$Html_Attributes$style(
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'position', _1: 'relative'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'height', _1: pixelHeight},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'width', _1: '100%'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'overflow', _1: 'hidden'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: '-webkit-transition-timing-function', _1: 'ease'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: '-o-transition-timing-function', _1: 'ease'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'transition-timing-function', _1: 'ease'},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: '-webkit-transition-duration', _1: '0.35s'},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: '-o-transition-duration', _1: '0.35s'},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'transition-duration', _1: '0.35s'},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: '-webkit-transition-property', _1: 'height'},
+													_1: {
+														ctor: '::',
+														_0: {ctor: '_Tuple2', _0: '-o-transition-property', _1: 'height'},
+														_1: {
+															ctor: '::',
+															_0: {ctor: '_Tuple2', _0: 'transition-property', _1: 'height'},
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$toScreenSize = function (_p14) {
+	var _p15 = _p14;
+	var _p16 = _p15.width;
+	return (_elm_lang$core$Native_Utils.cmp(_p16, 576) < 1) ? _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS : ((_elm_lang$core$Native_Utils.cmp(_p16, 768) < 1) ? _rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM : ((_elm_lang$core$Native_Utils.cmp(_p16, 992) < 1) ? _rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD : ((_elm_lang$core$Native_Utils.cmp(_p16, 1200) < 1) ? _rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG : _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL)));
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$sizeToComparable = function (size) {
+	var _p17 = size;
+	switch (_p17.ctor) {
+		case 'XS':
+			return 1;
+		case 'SM':
+			return 2;
+		case 'MD':
+			return 3;
+		case 'LG':
+			return 4;
+		default:
+			return 5;
+	}
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$shouldHideMenu = F2(
+	function (_p19, _p18) {
+		var _p20 = _p19;
+		var _p21 = _p18;
+		var winMedia = function () {
+			var _p22 = _p20._0.windowSize;
+			if (_p22.ctor === 'Just') {
+				return _rundis$elm_bootstrap$Bootstrap_Navbar$toScreenSize(_p22._0);
+			} else {
+				return _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS;
+			}
+		}();
+		var _p23 = A2(_elm_lang$core$Debug$log, 'ScreenSize', winMedia);
+		return _elm_lang$core$Native_Utils.cmp(
+			_rundis$elm_bootstrap$Bootstrap_Navbar$sizeToComparable(winMedia),
+			_rundis$elm_bootstrap$Bootstrap_Navbar$sizeToComparable(_p21._0.options.toggleAt)) > 0;
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$menuWrapperAttributes = F2(
+	function (_p25, _p24) {
+		var _p26 = _p25;
+		var _p32 = _p26;
+		var _p27 = _p24;
+		var _p31 = _p27._0.withAnimation;
+		var _p30 = _p27;
+		var display = function () {
+			var _p28 = _p26._0.height;
+			if (_p28.ctor === 'Nothing') {
+				return ((!_p31) || A2(_rundis$elm_bootstrap$Bootstrap_Navbar$shouldHideMenu, _p32, _p30)) ? 'flex' : 'block';
+			} else {
+				return 'flex';
+			}
+		}();
+		var styleBlock = {
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'width', _1: '100%'},
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
+		};
+		var _p29 = _p26._0.visibility;
+		switch (_p29.ctor) {
+			case 'Hidden':
+				return {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'display', _1: display},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'width', _1: '100%'},
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {ctor: '[]'}
+				};
+			case 'StartDown':
+				return styleBlock;
+			case 'AnimatingDown':
+				return styleBlock;
+			case 'AnimatingUp':
+				return styleBlock;
+			case 'StartUp':
+				return styleBlock;
+			default:
+				return ((!_p31) || A2(_rundis$elm_bootstrap$Bootstrap_Navbar$shouldHideMenu, _p32, _p30)) ? {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('collapse navbar-collapse show'),
+					_1: {ctor: '[]'}
+				} : {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				};
+		}
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$heightDecoder = function () {
+	var resToDec = function (res) {
+		var _p33 = res;
+		if (_p33.ctor === 'Ok') {
+			return _elm_lang$core$Json_Decode$succeed(_p33._0);
+		} else {
+			return _elm_lang$core$Json_Decode$fail(_p33._0);
+		}
+	};
+	var fromNavDec = _elm_lang$core$Json_Decode$oneOf(
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$core$Json_Decode$at,
+				{
+					ctor: '::',
+					_0: 'childNodes',
+					_1: {
+						ctor: '::',
+						_0: '2',
+						_1: {
+							ctor: '::',
+							_0: 'childNodes',
+							_1: {
+								ctor: '::',
+								_0: '0',
+								_1: {
+									ctor: '::',
+									_0: 'offsetHeight',
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				},
+				_elm_lang$core$Json_Decode$float),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$core$Json_Decode$at,
+					{
+						ctor: '::',
+						_0: 'childNodes',
+						_1: {
+							ctor: '::',
+							_0: '1',
+							_1: {
+								ctor: '::',
+								_0: 'childNodes',
+								_1: {
+									ctor: '::',
+									_0: '0',
+									_1: {
+										ctor: '::',
+										_0: 'offsetHeight',
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					},
+					_elm_lang$core$Json_Decode$float),
+				_1: {ctor: '[]'}
+			}
+		});
+	var fromButtonDec = _debois$elm_dom$DOM$parentElement(fromNavDec);
+	var tagDecoder = A3(
+		_elm_lang$core$Json_Decode$map2,
+		F2(
+			function (tag, val) {
+				return {ctor: '_Tuple2', _0: tag, _1: val};
+			}),
+		A2(_elm_lang$core$Json_Decode$field, 'tagName', _elm_lang$core$Json_Decode$string),
+		_elm_lang$core$Json_Decode$value);
+	return A2(
+		_elm_lang$core$Json_Decode$andThen,
+		function (_p34) {
+			var _p35 = _p34;
+			var _p37 = _p35._1;
+			var _p36 = _p35._0;
+			switch (_p36) {
+				case 'NAV':
+					return resToDec(
+						A2(_elm_lang$core$Json_Decode$decodeValue, fromNavDec, _p37));
+				case 'BUTTON':
+					return resToDec(
+						A2(_elm_lang$core$Json_Decode$decodeValue, fromButtonDec, _p37));
+				default:
+					return _elm_lang$core$Json_Decode$succeed(0);
+			}
+		},
+		_debois$elm_dom$DOM$target(
+			_debois$elm_dom$DOM$parentElement(tagDecoder)));
+}();
+var _rundis$elm_bootstrap$Bootstrap_Navbar$VisibilityState = F4(
+	function (a, b, c, d) {
+		return {visibility: a, height: b, windowSize: c, dropdowns: d};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$ConfigRec = F6(
+	function (a, b, c, d, e, f) {
+		return {options: a, toMsg: b, withAnimation: c, brand: d, items: e, customItems: f};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Options = F5(
+	function (a, b, c, d, e) {
+		return {fix: a, isContainer: b, scheme: c, toggleAt: d, attributes: e};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Scheme = F2(
+	function (a, b) {
+		return {modifier: a, bgColor: b};
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$State = function (a) {
+	return {ctor: 'State', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$mapState = F2(
+	function (mapper, _p38) {
+		var _p39 = _p38;
+		return _rundis$elm_bootstrap$Bootstrap_Navbar$State(
+			mapper(_p39._0));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$initWindowSize = F2(
+	function (toMsg, state) {
+		return A2(
+			_elm_lang$core$Task$perform,
+			function (size) {
+				return toMsg(
+					A2(
+						_rundis$elm_bootstrap$Bootstrap_Navbar$mapState,
+						function (s) {
+							return _elm_lang$core$Native_Utils.update(
+								s,
+								{
+									windowSize: _elm_lang$core$Maybe$Just(size)
+								});
+						},
+						state));
+			},
+			_elm_lang$window$Window$size);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Shown = {ctor: 'Shown'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$AnimatingUp = {ctor: 'AnimatingUp'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$StartUp = {ctor: 'StartUp'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$AnimatingDown = {ctor: 'AnimatingDown'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$StartDown = {ctor: 'StartDown'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Hidden = {ctor: 'Hidden'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$initialState = function (toMsg) {
+	var state = _rundis$elm_bootstrap$Bootstrap_Navbar$State(
+		{visibility: _rundis$elm_bootstrap$Bootstrap_Navbar$Hidden, height: _elm_lang$core$Maybe$Nothing, windowSize: _elm_lang$core$Maybe$Nothing, dropdowns: _elm_lang$core$Dict$empty});
+	return {
+		ctor: '_Tuple2',
+		_0: state,
+		_1: A2(_rundis$elm_bootstrap$Bootstrap_Navbar$initWindowSize, toMsg, state)
+	};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$visibilityTransition = F2(
+	function (withAnimation, visibility) {
+		var _p40 = {ctor: '_Tuple2', _0: withAnimation, _1: visibility};
+		_v23_8:
+		do {
+			if (_p40.ctor === '_Tuple2') {
+				if (_p40._0 === true) {
+					switch (_p40._1.ctor) {
+						case 'Hidden':
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$StartDown;
+						case 'StartDown':
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$AnimatingDown;
+						case 'AnimatingDown':
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$Shown;
+						case 'Shown':
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$StartUp;
+						case 'StartUp':
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$AnimatingUp;
+						default:
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$Hidden;
+					}
+				} else {
+					switch (_p40._1.ctor) {
+						case 'Hidden':
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$Shown;
+						case 'Shown':
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$Hidden;
+						default:
+							break _v23_8;
+					}
+				}
+			} else {
+				break _v23_8;
+			}
+		} while(false);
+		return _rundis$elm_bootstrap$Bootstrap_Navbar$Hidden;
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$toggleHandler = F2(
+	function (_p42, _p41) {
+		var _p43 = _p42;
+		var _p44 = _p41;
+		var updState = function (h) {
+			return A2(
+				_rundis$elm_bootstrap$Bootstrap_Navbar$mapState,
+				function (s) {
+					return _elm_lang$core$Native_Utils.update(
+						s,
+						{
+							height: _elm_lang$core$Maybe$Just(h),
+							visibility: A2(_rundis$elm_bootstrap$Bootstrap_Navbar$visibilityTransition, _p44._0.withAnimation, s.visibility)
+						});
+				},
+				_p43);
+		};
+		return A2(
+			_elm_lang$html$Html_Events$on,
+			'click',
+			A2(
+				_elm_lang$core$Json_Decode$andThen,
+				function (v) {
+					return _elm_lang$core$Json_Decode$succeed(
+						_p44._0.toMsg(
+							(_elm_lang$core$Native_Utils.cmp(v, 0) > 0) ? updState(v) : updState(
+								A2(_elm_lang$core$Maybe$withDefault, 0, _p43._0.height))));
+				},
+				_rundis$elm_bootstrap$Bootstrap_Navbar$heightDecoder));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$transitionHandler = F2(
+	function (state, _p45) {
+		var _p46 = _p45;
+		return _elm_lang$core$Json_Decode$succeed(
+			_p46._0.toMsg(
+				A2(
+					_rundis$elm_bootstrap$Bootstrap_Navbar$mapState,
+					function (s) {
+						return _elm_lang$core$Native_Utils.update(
+							s,
+							{
+								visibility: A2(_rundis$elm_bootstrap$Bootstrap_Navbar$visibilityTransition, _p46._0.withAnimation, s.visibility)
+							});
+					},
+					state)));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$menuAttributes = F2(
+	function (_p48, _p47) {
+		var _p49 = _p48;
+		var _p55 = _p49;
+		var _p54 = _p49._0.height;
+		var _p50 = _p47;
+		var _p53 = _p50;
+		var defaults = {
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('collapse navbar-collapse'),
+			_1: {ctor: '[]'}
+		};
+		var _p51 = _p49._0.visibility;
+		switch (_p51.ctor) {
+			case 'Hidden':
+				var _p52 = _p54;
+				if (_p52.ctor === 'Nothing') {
+					return ((!_p50._0.withAnimation) || A2(_rundis$elm_bootstrap$Bootstrap_Navbar$shouldHideMenu, _p55, _p53)) ? defaults : {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'height', _1: '0'},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'overflow', _1: 'hidden'},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'width', _1: '100%'},
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					};
+				} else {
+					return defaults;
+				}
+			case 'StartDown':
+				return {
+					ctor: '::',
+					_0: _rundis$elm_bootstrap$Bootstrap_Navbar$transitionStyle(_elm_lang$core$Maybe$Nothing),
+					_1: {ctor: '[]'}
+				};
+			case 'AnimatingDown':
+				return {
+					ctor: '::',
+					_0: _rundis$elm_bootstrap$Bootstrap_Navbar$transitionStyle(_p54),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html_Events$on,
+							'transitionend',
+							A2(_rundis$elm_bootstrap$Bootstrap_Navbar$transitionHandler, _p55, _p53)),
+						_1: {ctor: '[]'}
+					}
+				};
+			case 'AnimatingUp':
+				return {
+					ctor: '::',
+					_0: _rundis$elm_bootstrap$Bootstrap_Navbar$transitionStyle(_elm_lang$core$Maybe$Nothing),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html_Events$on,
+							'transitionend',
+							A2(_rundis$elm_bootstrap$Bootstrap_Navbar$transitionHandler, _p55, _p53)),
+						_1: {ctor: '[]'}
+					}
+				};
+			case 'StartUp':
+				return {
+					ctor: '::',
+					_0: _rundis$elm_bootstrap$Bootstrap_Navbar$transitionStyle(_p54),
+					_1: {ctor: '[]'}
+				};
+			default:
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					defaults,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('show'),
+						_1: {ctor: '[]'}
+					});
+		}
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Closed = {ctor: 'Closed'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$getOrInitDropdownStatus = F2(
+	function (id, _p56) {
+		var _p57 = _p56;
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			_rundis$elm_bootstrap$Bootstrap_Navbar$Closed,
+			A2(_elm_lang$core$Dict$get, id, _p57._0.dropdowns));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$ListenClicks = {ctor: 'ListenClicks'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Open = {ctor: 'Open'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$dropdownSubscriptions = F2(
+	function (_p58, toMsg) {
+		var _p59 = _p58;
+		var _p66 = _p59._0.dropdowns;
+		var needsSub = function (s) {
+			return A2(
+				_elm_lang$core$List$any,
+				function (_p60) {
+					var _p61 = _p60;
+					return _elm_lang$core$Native_Utils.eq(_p61._1, s);
+				},
+				_elm_lang$core$Dict$toList(_p66));
+		};
+		var updDropdowns = A2(
+			_elm_lang$core$Dict$map,
+			F2(
+				function (_p62, status) {
+					var _p63 = status;
+					switch (_p63.ctor) {
+						case 'Open':
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$ListenClicks;
+						case 'ListenClicks':
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$Closed;
+						default:
+							return _rundis$elm_bootstrap$Bootstrap_Navbar$Closed;
+					}
+				}),
+			_p66);
+		var updState = A2(
+			_rundis$elm_bootstrap$Bootstrap_Navbar$mapState,
+			function (s) {
+				return _elm_lang$core$Native_Utils.update(
+					s,
+					{dropdowns: updDropdowns});
+			},
+			_p59);
+		return _elm_lang$core$Platform_Sub$batch(
+			{
+				ctor: '::',
+				_0: needsSub(_rundis$elm_bootstrap$Bootstrap_Navbar$Open) ? _elm_lang$animation_frame$AnimationFrame$times(
+					function (_p64) {
+						return toMsg(updState);
+					}) : _elm_lang$core$Platform_Sub$none,
+				_1: {
+					ctor: '::',
+					_0: needsSub(_rundis$elm_bootstrap$Bootstrap_Navbar$ListenClicks) ? _elm_lang$mouse$Mouse$clicks(
+						function (_p65) {
+							return toMsg(updState);
+						}) : _elm_lang$core$Platform_Sub$none,
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$subscriptions = F2(
+	function (_p67, toMsg) {
+		var _p68 = _p67;
+		var _p72 = _p68;
+		var updState = function (v) {
+			return A2(
+				_rundis$elm_bootstrap$Bootstrap_Navbar$mapState,
+				function (s) {
+					return _elm_lang$core$Native_Utils.update(
+						s,
+						{visibility: v});
+				},
+				_p72);
+		};
+		return _elm_lang$core$Platform_Sub$batch(
+			{
+				ctor: '::',
+				_0: function () {
+					var _p69 = _p68._0.visibility;
+					switch (_p69.ctor) {
+						case 'StartDown':
+							return _elm_lang$animation_frame$AnimationFrame$times(
+								function (_p70) {
+									return toMsg(
+										updState(_rundis$elm_bootstrap$Bootstrap_Navbar$AnimatingDown));
+								});
+						case 'StartUp':
+							return _elm_lang$animation_frame$AnimationFrame$times(
+								function (_p71) {
+									return toMsg(
+										updState(_rundis$elm_bootstrap$Bootstrap_Navbar$AnimatingUp));
+								});
+						default:
+							return _elm_lang$core$Platform_Sub$none;
+					}
+				}(),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$window$Window$resizes(
+						function (size) {
+							return toMsg(
+								A2(
+									_rundis$elm_bootstrap$Bootstrap_Navbar$mapState,
+									function (s) {
+										return _elm_lang$core$Native_Utils.update(
+											s,
+											{
+												windowSize: _elm_lang$core$Maybe$Just(size)
+											});
+									},
+									_p72));
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(_rundis$elm_bootstrap$Bootstrap_Navbar$dropdownSubscriptions, _p72, toMsg),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$toggleOpen = F3(
+	function (state, id, _p73) {
+		var _p74 = _p73;
+		var currStatus = A2(_rundis$elm_bootstrap$Bootstrap_Navbar$getOrInitDropdownStatus, id, state);
+		var newStatus = function () {
+			var _p75 = currStatus;
+			switch (_p75.ctor) {
+				case 'Open':
+					return _rundis$elm_bootstrap$Bootstrap_Navbar$Closed;
+				case 'ListenClicks':
+					return _rundis$elm_bootstrap$Bootstrap_Navbar$Closed;
+				default:
+					return _rundis$elm_bootstrap$Bootstrap_Navbar$Open;
+			}
+		}();
+		return _p74._0.toMsg(
+			A2(
+				_rundis$elm_bootstrap$Bootstrap_Navbar$mapState,
+				function (s) {
+					return _elm_lang$core$Native_Utils.update(
+						s,
+						{
+							dropdowns: A3(_elm_lang$core$Dict$insert, id, newStatus, s.dropdowns)
+						});
+				},
+				state));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$renderDropdownToggle = F4(
+	function (state, id, config, _p76) {
+		var _p77 = _p76;
+		return A2(
+			_elm_lang$html$Html$a,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('nav-link dropdown-toggle'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$href('#'),
+						_1: {
+							ctor: '::',
+							_0: A3(
+								_elm_lang$html$Html_Events$onWithOptions,
+								'click',
+								{stopPropagation: false, preventDefault: true},
+								_elm_lang$core$Json_Decode$succeed(
+									A3(_rundis$elm_bootstrap$Bootstrap_Navbar$toggleOpen, state, id, config))),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				_p77._0.attributes),
+			_p77._0.children);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$renderDropdown = F3(
+	function (state, _p79, _p78) {
+		var _p80 = _p79;
+		var _p81 = _p78;
+		var _p85 = _p81._0.id;
+		var isShown = !_elm_lang$core$Native_Utils.eq(
+			A2(_rundis$elm_bootstrap$Bootstrap_Navbar$getOrInitDropdownStatus, _p85, state),
+			_rundis$elm_bootstrap$Bootstrap_Navbar$Closed);
+		var needsDropup = A2(
+			_elm_lang$core$Maybe$withDefault,
+			false,
+			A2(
+				_elm_lang$core$Maybe$map,
+				function (fix) {
+					var _p82 = fix;
+					if (_p82.ctor === 'Bottom') {
+						return true;
+					} else {
+						return false;
+					}
+				},
+				_p80._0.options.fix));
+		return A2(
+			_elm_lang$html$Html$li,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$classList(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'nav-item', _1: true},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'dropdown', _1: true},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'shown', _1: isShown},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'dropup', _1: needsDropup},
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A4(_rundis$elm_bootstrap$Bootstrap_Navbar$renderDropdownToggle, state, _p85, _p80, _p81._0.toggle),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$classList(
+								{
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'dropdown-menu', _1: true},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'show', _1: isShown},
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						},
+						A2(
+							_elm_lang$core$List$map,
+							function (_p83) {
+								var _p84 = _p83;
+								return _p84._0;
+							},
+							_p81._0.items)),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$renderNav = F3(
+	function (state, config, navItems) {
+		return A2(
+			_elm_lang$html$Html$ul,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('navbar-nav mr-auto'),
+				_1: {ctor: '[]'}
+			},
+			A2(
+				_elm_lang$core$List$map,
+				function (item) {
+					var _p86 = item;
+					if (_p86.ctor === 'Item') {
+						return _rundis$elm_bootstrap$Bootstrap_Navbar$renderItemLink(_p86._0);
+					} else {
+						return A3(_rundis$elm_bootstrap$Bootstrap_Navbar$renderDropdown, state, config, _p86._0);
+					}
+				},
+				navItems));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$view = F2(
+	function (state, _p87) {
+		var _p88 = _p87;
+		var _p91 = _p88;
+		var _p90 = _p88._0.brand;
+		return A2(
+			_elm_lang$html$Html$nav,
+			_rundis$elm_bootstrap$Bootstrap_Navbar$navbarAttributes(_p88._0.options),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_rundis$elm_bootstrap$Bootstrap_Navbar$maybeBrand(_p90),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$button,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										'navbar-toggler',
+										A2(
+											_elm_lang$core$Maybe$withDefault,
+											'',
+											A2(
+												_elm_lang$core$Maybe$map,
+												function (_p89) {
+													return ' navbar-toggler-right';
+												},
+												_p90)))),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$type_('button'),
+									_1: {
+										ctor: '::',
+										_0: A2(_rundis$elm_bootstrap$Bootstrap_Navbar$toggleHandler, state, _p91),
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$span,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('navbar-toggler-icon'),
+										_1: {ctor: '[]'}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							A2(_rundis$elm_bootstrap$Bootstrap_Navbar$menuAttributes, state, _p91),
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									A2(_rundis$elm_bootstrap$Bootstrap_Navbar$menuWrapperAttributes, state, _p91),
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										{
+											ctor: '::',
+											_0: A3(_rundis$elm_bootstrap$Bootstrap_Navbar$renderNav, state, _p91, _p88._0.items),
+											_1: {ctor: '[]'}
+										},
+										_rundis$elm_bootstrap$Bootstrap_Navbar$renderCustom(_p88._0.customItems))),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					})));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Config = function (a) {
+	return {ctor: 'Config', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$updateConfig = F2(
+	function (mapper, _p92) {
+		var _p93 = _p92;
+		return _rundis$elm_bootstrap$Bootstrap_Navbar$Config(
+			mapper(_p93._0));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$withAnimation = function (config) {
+	return A2(
+		_rundis$elm_bootstrap$Bootstrap_Navbar$updateConfig,
+		function (conf) {
+			return _elm_lang$core$Native_Utils.update(
+				conf,
+				{withAnimation: true});
+		},
+		config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$items = F2(
+	function (items, config) {
+		return A2(
+			_rundis$elm_bootstrap$Bootstrap_Navbar$updateConfig,
+			function (conf) {
+				return _elm_lang$core$Native_Utils.update(
+					conf,
+					{items: items});
+			},
+			config);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$customItems = F2(
+	function (items, config) {
+		return A2(
+			_rundis$elm_bootstrap$Bootstrap_Navbar$updateConfig,
+			function (conf) {
+				return _elm_lang$core$Native_Utils.update(
+					conf,
+					{customItems: items});
+			},
+			config);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$updateOptions = F2(
+	function (mapper, _p94) {
+		var _p95 = _p94;
+		var _p96 = _p95._0;
+		return _rundis$elm_bootstrap$Bootstrap_Navbar$Config(
+			_elm_lang$core$Native_Utils.update(
+				_p96,
+				{
+					options: mapper(_p96.options)
+				}));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$container = function (config) {
+	return A2(
+		_rundis$elm_bootstrap$Bootstrap_Navbar$updateOptions,
+		function (opts) {
+			return _elm_lang$core$Native_Utils.update(
+				opts,
+				{isContainer: true});
+		},
+		config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$scheme = F3(
+	function (modifier, bgColor, config) {
+		return A2(
+			_rundis$elm_bootstrap$Bootstrap_Navbar$updateOptions,
+			function (opt) {
+				return _elm_lang$core$Native_Utils.update(
+					opt,
+					{
+						scheme: _elm_lang$core$Maybe$Just(
+							{modifier: modifier, bgColor: bgColor})
+					});
+			},
+			config);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$toggleAt = F2(
+	function (size, config) {
+		return A2(
+			_rundis$elm_bootstrap$Bootstrap_Navbar$updateOptions,
+			function (opt) {
+				return _elm_lang$core$Native_Utils.update(
+					opt,
+					{toggleAt: size});
+			},
+			config);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$collapseSmall = _rundis$elm_bootstrap$Bootstrap_Navbar$toggleAt(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$SM);
+var _rundis$elm_bootstrap$Bootstrap_Navbar$collapseMedium = _rundis$elm_bootstrap$Bootstrap_Navbar$toggleAt(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$MD);
+var _rundis$elm_bootstrap$Bootstrap_Navbar$collapseLarge = _rundis$elm_bootstrap$Bootstrap_Navbar$toggleAt(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$LG);
+var _rundis$elm_bootstrap$Bootstrap_Navbar$collapseExtraLarge = _rundis$elm_bootstrap$Bootstrap_Navbar$toggleAt(_rundis$elm_bootstrap$Bootstrap_Grid_Internal$XL);
+var _rundis$elm_bootstrap$Bootstrap_Navbar$attrs = F2(
+	function (attrs, config) {
+		return A2(
+			_rundis$elm_bootstrap$Bootstrap_Navbar$updateOptions,
+			function (opt) {
+				return _elm_lang$core$Native_Utils.update(
+					opt,
+					{
+						attributes: A2(_elm_lang$core$Basics_ops['++'], opt.attributes, attrs)
+					});
+			},
+			config);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Bottom = {ctor: 'Bottom'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$fixBottom = function (config) {
+	return A2(
+		_rundis$elm_bootstrap$Bootstrap_Navbar$updateOptions,
+		function (opts) {
+			return _elm_lang$core$Native_Utils.update(
+				opts,
+				{
+					fix: _elm_lang$core$Maybe$Just(_rundis$elm_bootstrap$Bootstrap_Navbar$Bottom)
+				});
+		},
+		config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Top = {ctor: 'Top'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$fixTop = function (config) {
+	return A2(
+		_rundis$elm_bootstrap$Bootstrap_Navbar$updateOptions,
+		function (opts) {
+			return _elm_lang$core$Native_Utils.update(
+				opts,
+				{
+					fix: _elm_lang$core$Maybe$Just(_rundis$elm_bootstrap$Bootstrap_Navbar$Top)
+				});
+		},
+		config);
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Light = {ctor: 'Light'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Dark = {ctor: 'Dark'};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Class = function (a) {
+	return {ctor: 'Class', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$darkCustomClass = function (classString) {
+	return A2(
+		_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+		_rundis$elm_bootstrap$Bootstrap_Navbar$Dark,
+		_rundis$elm_bootstrap$Bootstrap_Navbar$Class(classString));
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$lightCustomClass = function (classString) {
+	return A2(
+		_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+		_rundis$elm_bootstrap$Bootstrap_Navbar$Light,
+		_rundis$elm_bootstrap$Bootstrap_Navbar$Class(classString));
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Custom = function (a) {
+	return {ctor: 'Custom', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$darkCustom = function (color) {
+	return A2(
+		_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+		_rundis$elm_bootstrap$Bootstrap_Navbar$Dark,
+		_rundis$elm_bootstrap$Bootstrap_Navbar$Custom(color));
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$lightCustom = function (color) {
+	return A2(
+		_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+		_rundis$elm_bootstrap$Bootstrap_Navbar$Light,
+		_rundis$elm_bootstrap$Bootstrap_Navbar$Custom(color));
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Roled = function (a) {
+	return {ctor: 'Roled', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$config = function (toMsg) {
+	return _rundis$elm_bootstrap$Bootstrap_Navbar$Config(
+		{
+			toMsg: toMsg,
+			withAnimation: false,
+			brand: _elm_lang$core$Maybe$Nothing,
+			items: {ctor: '[]'},
+			customItems: {ctor: '[]'},
+			options: {
+				fix: _elm_lang$core$Maybe$Nothing,
+				isContainer: false,
+				scheme: _elm_lang$core$Maybe$Just(
+					{
+						modifier: _rundis$elm_bootstrap$Bootstrap_Navbar$Light,
+						bgColor: _rundis$elm_bootstrap$Bootstrap_Navbar$Roled(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Light)
+					}),
+				toggleAt: _rundis$elm_bootstrap$Bootstrap_Grid_Internal$XS,
+				attributes: {ctor: '[]'}
+			}
+		});
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$light = A2(
+	_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Light,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Roled(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Light));
+var _rundis$elm_bootstrap$Bootstrap_Navbar$dark = A2(
+	_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Dark,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Roled(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Dark));
+var _rundis$elm_bootstrap$Bootstrap_Navbar$primary = A2(
+	_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Dark,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Roled(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Primary));
+var _rundis$elm_bootstrap$Bootstrap_Navbar$secondary = A2(
+	_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Dark,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Roled(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Secondary));
+var _rundis$elm_bootstrap$Bootstrap_Navbar$success = A2(
+	_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Dark,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Roled(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Success));
+var _rundis$elm_bootstrap$Bootstrap_Navbar$info = A2(
+	_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Dark,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Roled(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Info));
+var _rundis$elm_bootstrap$Bootstrap_Navbar$warning = A2(
+	_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Dark,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Roled(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Warning));
+var _rundis$elm_bootstrap$Bootstrap_Navbar$danger = A2(
+	_rundis$elm_bootstrap$Bootstrap_Navbar$scheme,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Dark,
+	_rundis$elm_bootstrap$Bootstrap_Navbar$Roled(_rundis$elm_bootstrap$Bootstrap_Internal_Role$Danger));
+var _rundis$elm_bootstrap$Bootstrap_Navbar$NavDropdown = function (a) {
+	return {ctor: 'NavDropdown', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Item = function (a) {
+	return {ctor: 'Item', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$itemLink = F2(
+	function (attributes, children) {
+		return _rundis$elm_bootstrap$Bootstrap_Navbar$Item(
+			{attributes: attributes, children: children});
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$itemLinkActive = function (attributes) {
+	return _rundis$elm_bootstrap$Bootstrap_Navbar$itemLink(
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('active'),
+			_1: attributes
+		});
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$CustomItem = function (a) {
+	return {ctor: 'CustomItem', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$textItem = F2(
+	function (attributes, children) {
+		return _rundis$elm_bootstrap$Bootstrap_Navbar$CustomItem(
+			A2(
+				_elm_lang$html$Html$span,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('navbar-text'),
+					_1: attributes
+				},
+				children));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$formItem = F2(
+	function (attributes, children) {
+		return _rundis$elm_bootstrap$Bootstrap_Navbar$CustomItem(
+			A2(
+				_elm_lang$html$Html$form,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('form-inline'),
+					_1: attributes
+				},
+				children));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$customItem = function (elem) {
+	return _rundis$elm_bootstrap$Bootstrap_Navbar$CustomItem(elem);
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Brand = function (a) {
+	return {ctor: 'Brand', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$brand = F3(
+	function (attributes, children, config) {
+		return A2(
+			_rundis$elm_bootstrap$Bootstrap_Navbar$updateConfig,
+			function (conf) {
+				return _elm_lang$core$Native_Utils.update(
+					conf,
+					{
+						brand: _elm_lang$core$Maybe$Just(
+							_rundis$elm_bootstrap$Bootstrap_Navbar$Brand(
+								A2(
+									_elm_lang$html$Html$a,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('navbar-brand'),
+											_1: {ctor: '[]'}
+										},
+										attributes),
+									children)))
+					});
+			},
+			config);
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$Dropdown = function (a) {
+	return {ctor: 'Dropdown', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$dropdown = function (config) {
+	return _rundis$elm_bootstrap$Bootstrap_Navbar$NavDropdown(
+		_rundis$elm_bootstrap$Bootstrap_Navbar$Dropdown(config));
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$DropdownToggle = function (a) {
+	return {ctor: 'DropdownToggle', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$dropdownToggle = F2(
+	function (attributes, children) {
+		return _rundis$elm_bootstrap$Bootstrap_Navbar$DropdownToggle(
+			{attributes: attributes, children: children});
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$DropdownItem = function (a) {
+	return {ctor: 'DropdownItem', _0: a};
+};
+var _rundis$elm_bootstrap$Bootstrap_Navbar$dropdownItem = F2(
+	function (attributes, children) {
+		return _rundis$elm_bootstrap$Bootstrap_Navbar$DropdownItem(
+			A2(
+				_elm_lang$html$Html$a,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('dropdown-item'),
+						_1: {ctor: '[]'}
+					},
+					attributes),
+				children));
+	});
+var _rundis$elm_bootstrap$Bootstrap_Navbar$dropdownDivider = _rundis$elm_bootstrap$Bootstrap_Navbar$DropdownItem(
+	A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('dropdown-divider'),
+			_1: {ctor: '[]'}
+		},
+		{ctor: '[]'}));
+var _rundis$elm_bootstrap$Bootstrap_Navbar$dropdownHeader = function (children) {
+	return _rundis$elm_bootstrap$Bootstrap_Navbar$DropdownItem(
+		A2(
+			_elm_lang$html$Html$h6,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('dropdown-header'),
+				_1: {ctor: '[]'}
+			},
+			children));
+};
