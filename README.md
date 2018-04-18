@@ -1,1 +1,5 @@
-# Elm-AdVenture-Capitalist-
+# Elm-AdVenture-Capitalist
+
+```
+elm-app start
+```

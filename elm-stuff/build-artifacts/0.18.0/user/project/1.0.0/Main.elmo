@@ -1,0 +1,344 @@
+var _user$project$Main$getMultiplier = F2(
+	function (model, business) {
+		var _p0 = A2(_elm_lang$core$Dict$get, business, model.config);
+		if (_p0.ctor === 'Just') {
+			return _p0._0.quantity;
+		} else {
+			return 0;
+		}
+	});
+var _user$project$Main$getProductivity = F2(
+	function (model, business) {
+		var _p1 = A2(_elm_lang$core$Dict$get, business, model.config);
+		if (_p1.ctor === 'Just') {
+			return _p1._0.productivity;
+		} else {
+			return 0;
+		}
+	});
+var _user$project$Main$getCost = F2(
+	function (model, business) {
+		var _p2 = A2(_elm_lang$core$Dict$get, business, model.config);
+		if (_p2.ctor === 'Just') {
+			return _p2._0.cost;
+		} else {
+			return 0;
+		}
+	});
+var _user$project$Main$getProfit = function (model) {
+	return A3(
+		_elm_lang$core$Dict$foldl,
+		F3(
+			function (key, x, acc) {
+				return acc + (x.quantity * x.productivity);
+			}),
+		0,
+		model.config);
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p3 = msg;
+		if (_p3.ctor === 'Purchase') {
+			var _p6 = _p3._0;
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						money: model.money - A2(_user$project$Main$getCost, model, _p6),
+						config: A3(
+							_elm_lang$core$Dict$update,
+							_p6,
+							function (x) {
+								var _p4 = x;
+								if (_p4.ctor === 'Just') {
+									var _p5 = _p4._0;
+									return _elm_lang$core$Maybe$Just(
+										_elm_lang$core$Native_Utils.update(
+											_p5,
+											{quantity: _p5.quantity + 1, cost: _p5.cost * _p5.coefficient}));
+								} else {
+									return _elm_lang$core$Maybe$Nothing;
+								}
+							},
+							model.config)
+					}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		} else {
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						money: model.money + _user$project$Main$getProfit(model)
+					}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
+	});
+var _user$project$Main$baseConfig = _elm_lang$core$Dict$fromList(
+	{
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 'Lemonade Stand',
+			_1: {quantity: 1, cost: 3.7, productivity: 1.67, coefficient: 1.07}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 'Newspaper Delivery',
+				_1: {quantity: 0, cost: 60, productivity: 20, coefficient: 1.15}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'Car Wash',
+					_1: {quantity: 0, cost: 720, productivity: 90, coefficient: 1.14}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'Pizza Delivery',
+						_1: {quantity: 0, cost: 8640, productivity: 360, coefficient: 1.13}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 'Donut Shop',
+							_1: {quantity: 0, cost: 103680, productivity: 2160, coefficient: 1.12}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'Shrimp Boat',
+								_1: {quantity: 0, cost: 1244160, productivity: 6480, coefficient: 1.11}
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 'Hockey Team',
+									_1: {quantity: 0, cost: 14929920, productivity: 19440, coefficient: 1.1}
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 'Movie Studio',
+										_1: {quantity: 0, cost: 179159040, productivity: 58320, coefficient: 1.09}
+									},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: 'Bank',
+											_1: {quantity: 0, cost: 2149908480, productivity: 174960, coefficient: 1.08}
+										},
+										_1: {
+											ctor: '::',
+											_0: {
+												ctor: '_Tuple2',
+												_0: 'Oil Company',
+												_1: {quantity: 0, cost: 25798901760, productivity: 804816, coefficient: 1.07}
+											},
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Main$init = {
+	ctor: '_Tuple2',
+	_0: {money: 1, config: _user$project$Main$baseConfig},
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$Main$Config = F4(
+	function (a, b, c, d) {
+		return {quantity: a, cost: b, productivity: c, coefficient: d};
+	});
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {money: a, config: b};
+	});
+var _user$project$Main$Tick = function (a) {
+	return {ctor: 'Tick', _0: a};
+};
+var _user$project$Main$subscriptions = function (model) {
+	return A2(_elm_lang$core$Time$every, _elm_lang$core$Time$second, _user$project$Main$Tick);
+};
+var _user$project$Main$Purchase = function (a) {
+	return {ctor: 'Purchase', _0: a};
+};
+var _user$project$Main$businessDetails = F2(
+	function (model, business) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$h3,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(business),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$h4,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'Cost: £',
+									A2(
+										_myrho$elm_round$Round$round,
+										2,
+										A2(_user$project$Main$getCost, model, business)))),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$h4,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										'Productivity: £',
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											_elm_lang$core$Basics$toString(
+												A2(_user$project$Main$getProductivity, model, business)),
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												'/s ',
+												A2(_elm_lang$core$Basics_ops['++'], 'per ', business))))),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$h4,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											'Quantity: ',
+											_elm_lang$core$Basics$toString(
+												A2(_user$project$Main$getMultiplier, model, business)))),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$button,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(
+											_user$project$Main$Purchase(business)),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$disabled(
+												_elm_lang$core$Native_Utils.cmp(
+													model.money,
+													A2(_user$project$Main$getCost, model, business)) < 0),
+											_1: {ctor: '[]'}
+										}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(
+											A2(_elm_lang$core$Basics_ops['++'], 'Buy ', business)),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			});
+	});
+var _user$project$Main$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$h1,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'£',
+							A2(_myrho$elm_round$Round$round, 2, model.money))),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(_user$project$Main$businessDetails, model, 'Lemonade Stand'),
+				_1: {
+					ctor: '::',
+					_0: A2(_user$project$Main$businessDetails, model, 'Newspaper Delivery'),
+					_1: {
+						ctor: '::',
+						_0: A2(_user$project$Main$businessDetails, model, 'Car Wash'),
+						_1: {
+							ctor: '::',
+							_0: A2(_user$project$Main$businessDetails, model, 'Pizza Delivery'),
+							_1: {
+								ctor: '::',
+								_0: A2(_user$project$Main$businessDetails, model, 'Donut Shop'),
+								_1: {
+									ctor: '::',
+									_0: A2(_user$project$Main$businessDetails, model, 'Shrimp Boat'),
+									_1: {
+										ctor: '::',
+										_0: A2(_user$project$Main$businessDetails, model, 'Hockey Team'),
+										_1: {
+											ctor: '::',
+											_0: A2(_user$project$Main$businessDetails, model, 'Movie Studio'),
+											_1: {
+												ctor: '::',
+												_0: A2(_user$project$Main$businessDetails, model, 'Bank'),
+												_1: {
+													ctor: '::',
+													_0: A2(_user$project$Main$businessDetails, model, 'Oil Company'),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{view: _user$project$Main$view, init: _user$project$Main$init, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
