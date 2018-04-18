@@ -53,7 +53,7 @@ update msg model =
                         (\x ->
                             case x of
                                 Just x ->
-                                    Just { x | quantity = x.quantity + 1, cost = x.cost * x.coefficient }
+                                    Just { x | quantity = x.quantity + 1, cost = x.cost * x.coefficient, productivity = if round(x.quantity + 1) % 25 == 0 then x.productivity*2.0 else x.productivity }
 
                                 Nothing ->
                                     Nothing

@@ -56,7 +56,16 @@ var _user$project$Main$update = F2(
 									return _elm_lang$core$Maybe$Just(
 										_elm_lang$core$Native_Utils.update(
 											_p5,
-											{quantity: _p5.quantity + 1, cost: _p5.cost * _p5.coefficient}));
+											{
+												quantity: _p5.quantity + 1,
+												cost: _p5.cost * _p5.coefficient,
+												productivity: _elm_lang$core$Native_Utils.eq(
+													A2(
+														_elm_lang$core$Basics_ops['%'],
+														_elm_lang$core$Basics$round(_p5.quantity + 1),
+														25),
+													0) ? (_p5.productivity * 2.0) : _p5.productivity
+											}));
 								} else {
 									return _elm_lang$core$Maybe$Nothing;
 								}
