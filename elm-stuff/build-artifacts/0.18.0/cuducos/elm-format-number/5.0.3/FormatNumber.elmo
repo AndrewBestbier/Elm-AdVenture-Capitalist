@@ -1,0 +1,5 @@
+var _cuducos$elm_format_number$FormatNumber$format = F2(
+	function (locale, num) {
+		return _cuducos$elm_format_number$Helpers$stringfy(
+			A2(_cuducos$elm_format_number$Helpers$parse, locale, num));
+	});

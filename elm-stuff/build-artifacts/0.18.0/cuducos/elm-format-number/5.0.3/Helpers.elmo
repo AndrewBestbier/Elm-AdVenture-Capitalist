@@ -1,0 +1,93 @@
+var _cuducos$elm_format_number$Helpers$stringfy = function (formatted) {
+	var decimals = function () {
+		var _p0 = formatted.decimals;
+		if (_p0.ctor === 'Just') {
+			return A2(_elm_lang$core$Basics_ops['++'], formatted.locale.decimalSeparator, _p0._0);
+		} else {
+			return '';
+		}
+	}();
+	return _elm_lang$core$String$concat(
+		{
+			ctor: '::',
+			_0: A2(_elm_lang$core$Maybe$withDefault, '', formatted.negativePrefix),
+			_1: {
+				ctor: '::',
+				_0: A2(_elm_lang$core$String$join, formatted.locale.thousandSeparator, formatted.integers),
+				_1: {
+					ctor: '::',
+					_0: decimals,
+					_1: {
+						ctor: '::',
+						_0: A2(_elm_lang$core$Maybe$withDefault, '', formatted.negativeSuffix),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _cuducos$elm_format_number$Helpers$splitThousands = function (integers) {
+	var reversedSplitThousands = function (value) {
+		return (_elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$String$length(value),
+			3) > 0) ? A2(
+			F2(
+				function (x, y) {
+					return {ctor: '::', _0: x, _1: y};
+				}),
+			A2(_elm_lang$core$String$right, 3, value),
+			reversedSplitThousands(
+				A2(_elm_lang$core$String$dropRight, 3, value))) : {
+			ctor: '::',
+			_0: value,
+			_1: {ctor: '[]'}
+		};
+	};
+	return _elm_lang$core$List$reverse(
+		reversedSplitThousands(integers));
+};
+var _cuducos$elm_format_number$Helpers$isNegative = function (formatted) {
+	var onlyZeros = A2(
+		_elm_lang$core$String$all,
+		function ($char) {
+			return _elm_lang$core$Native_Utils.eq(
+				$char,
+				_elm_lang$core$Native_Utils.chr('0'));
+		},
+		_elm_lang$core$String$concat(
+			A2(
+				_elm_lang$core$List$append,
+				formatted.integers,
+				_elm_lang$core$List$singleton(
+					A2(_elm_lang$core$Maybe$withDefault, '', formatted.decimals)))));
+	var isPositive = _elm_lang$core$Native_Utils.cmp(formatted.original, 0) > -1;
+	return !(isPositive || onlyZeros);
+};
+var _cuducos$elm_format_number$Helpers$FormattedNumber = F6(
+	function (a, b, c, d, e, f) {
+		return {locale: a, original: b, integers: c, decimals: d, negativePrefix: e, negativeSuffix: f};
+	});
+var _cuducos$elm_format_number$Helpers$parse = F2(
+	function (locale, original) {
+		var parts = A2(
+			_elm_lang$core$String$split,
+			'.',
+			A2(_myrho$elm_round$Round$round, locale.decimals, original));
+		var integers = _cuducos$elm_format_number$Helpers$splitThousands(
+			A2(
+				_elm_lang$core$String$filter,
+				_elm_lang$core$Char$isDigit,
+				A2(
+					_elm_lang$core$Maybe$withDefault,
+					'0',
+					_elm_lang$core$List$head(parts))));
+		var decimals = _elm_lang$core$List$head(
+			A2(_elm_lang$core$List$drop, 1, parts));
+		var partial = A6(_cuducos$elm_format_number$Helpers$FormattedNumber, locale, original, integers, decimals, _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing);
+		return _cuducos$elm_format_number$Helpers$isNegative(partial) ? _elm_lang$core$Native_Utils.update(
+			partial,
+			{
+				negativePrefix: _elm_lang$core$Maybe$Just(locale.negativePrefix),
+				negativeSuffix: _elm_lang$core$Maybe$Just(locale.negativeSuffix)
+			}) : partial;
+	});

@@ -1,3 +1,9 @@
+var _user$project$Main$formatMoney = function (value) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		'£',
+		A2(_cuducos$elm_format_number$FormatNumber$format, _cuducos$elm_format_number$FormatNumber_Locales$usLocale, value));
+};
 var _user$project$Main$getProgress = F2(
 	function (model, business) {
 		var _p0 = A2(_elm_lang$core$Dict$get, business, model.config);
@@ -210,10 +216,8 @@ var _user$project$Main$businessDetails = F2(
 						_0: _elm_lang$html$Html$text(
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								'Cost: £',
-								A2(
-									_myrho$elm_round$Round$round,
-									2,
+								'Cost: ',
+								_user$project$Main$formatMoney(
 									A2(_user$project$Main$getCost, model, business)))),
 						_1: {ctor: '[]'}
 					}),
@@ -227,10 +231,10 @@ var _user$project$Main$businessDetails = F2(
 							_0: _elm_lang$html$Html$text(
 								A2(
 									_elm_lang$core$Basics_ops['++'],
-									'Productivity: £',
+									'Productivity: ',
 									A2(
 										_elm_lang$core$Basics_ops['++'],
-										_elm_lang$core$Basics$toString(
+										_user$project$Main$formatMoney(
 											A2(_user$project$Main$getProductivity, model, business)),
 										A2(_elm_lang$core$Basics_ops['++'], '/s ', 'each')))),
 							_1: {ctor: '[]'}
@@ -258,7 +262,7 @@ var _user$project$Main$businessDetails = F2(
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text('Progress to productivity upgrade:'),
+										_0: _elm_lang$html$Html$text('Productivity upgrade progress:'),
 										_1: {ctor: '[]'}
 									})),
 							_1: {
@@ -399,10 +403,7 @@ var _user$project$Main$view = function (model) {
 									{
 										ctor: '::',
 										_0: _elm_lang$html$Html$text(
-											A2(
-												_elm_lang$core$Basics_ops['++'],
-												'£',
-												A2(_myrho$elm_round$Round$round, 2, model.money))),
+											_user$project$Main$formatMoney(model.money)),
 										_1: {ctor: '[]'}
 									}),
 								_1: {

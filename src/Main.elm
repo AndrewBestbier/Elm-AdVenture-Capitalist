@@ -8,6 +8,8 @@ import Bootstrap.Grid as Grid
 import Bootstrap.Progress as Progress
 import Bootstrap.Text as Text
 import Dict
+import FormatNumber exposing (format)
+import FormatNumber.Locales exposing (Locale, usLocale)
 import Html exposing (Html, button, div, h1, h3, h4, text)
 import Html.Attributes exposing (class, disabled, src, style)
 import Round
@@ -141,13 +143,17 @@ getProgress model business =
             0
 
 
+formatMoney value =
+    "£" ++ format usLocale value
+
+
 view : Model -> Html Msg
 view model =
     Grid.container []
         [ CDN.stylesheet
         , Grid.row []
             [ Grid.col []
-                [ h1 [ style [ ( "font-size", "5rem" ), ( "color", "white" ) ] ] [ text ("£" ++ Round.round 2 model.money) ]
+                [ h1 [ style [ ( "font-size", "5rem" ), ( "color", "white" ) ] ] [ text (formatMoney model.money) ]
                 , Card.columns
                     [ businessDetails model "Lemonade Stand"
                     , businessDetails model "Newspaper Delivery"
@@ -170,11 +176,11 @@ businessDetails model business =
             [ h3 [] [ text business ]
             ]
         |> Card.block []
-            [ Block.text [] [ text ("Cost: £" ++ (getCost model business |> Round.round 2)) ]
-            , Block.text [] [ text ("Productivity: £" ++ toString (getProductivity model business) ++ "/s " ++ "each") ]
+            [ Block.text [] [ text ("Cost: " ++ formatMoney (getCost model business)) ]
+            , Block.text [] [ text ("Productivity: " ++ formatMoney (getProductivity model business) ++ "/s " ++ "each") ]
             , Block.text [] [ text ("Quantity: " ++ toString (getQuantity model business)) ]
             , Block.custom <|
-                div [] [ text "Progress to productivity upgrade:" ]
+                div [] [ text "Productivity upgrade progress:" ]
             , Block.custom <|
                 div [ style [ ( "margin-top", "0.5rem" ), ( "margin-bottom", "2rem" ) ] ] [ Progress.progress [ Progress.value (getProgress model business) ] ]
             , Block.custom <|

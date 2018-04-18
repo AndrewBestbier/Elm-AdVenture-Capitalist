@@ -1,0 +1,7 @@
+var _cuducos$elm_format_number$FormatNumber_Locales$Locale = F5(
+	function (a, b, c, d, e) {
+		return {decimals: a, thousandSeparator: b, decimalSeparator: c, negativePrefix: d, negativeSuffix: e};
+	});
+var _cuducos$elm_format_number$FormatNumber_Locales$frenchLocale = A5(_cuducos$elm_format_number$FormatNumber_Locales$Locale, 3, ' ', ',', '−', '');
+var _cuducos$elm_format_number$FormatNumber_Locales$spanishLocale = A5(_cuducos$elm_format_number$FormatNumber_Locales$Locale, 3, '.', ',', '−', '');
+var _cuducos$elm_format_number$FormatNumber_Locales$usLocale = A5(_cuducos$elm_format_number$FormatNumber_Locales$Locale, 2, ',', '.', '−', '');

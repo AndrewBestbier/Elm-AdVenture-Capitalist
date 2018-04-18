@@ -1,0 +1,15 @@
+{
+  "name": "elm-format-number",
+  "version": "0.0.0",
+  "scripts": {
+    "cleanup": "rm -rf tests/Doc tests/elm-stuff tests/Main.elm tests/Tests.elm",
+    "pretest": "elm-verify-examples && elm-test init && rm tests/Example.elm",
+    "test": "elm-test",
+    "posttest": "git checkout -- tests/elm-package.json"
+  },
+  "devDependencies": {
+    "elm": "^0.18.0",
+    "elm-test": "^0.18.7",
+    "elm-verify-examples": "^1.0.2"
+  }
+}
