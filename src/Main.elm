@@ -153,7 +153,7 @@ view model =
         [ CDN.stylesheet
         , Grid.row []
             [ Grid.col []
-                [ h1 [ style [ ( "font-size", "5rem" ), ( "color", "white" ) ] ] [ text (formatMoney model.money) ]
+                [ h1 [ style [ ( "font-size", "5rem" ), ( "color", "white" ), ( "margin-top", "50px" ), ( "margin-bottom", "50px" ) ] ] [ text (formatMoney model.money) ]
                 , Card.columns
                     [ businessDetails model "Lemonade Stand"
                     , businessDetails model "Newspaper Delivery"

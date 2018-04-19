@@ -1,10 +1,10 @@
-var _user$project$Main$formatMoney = function (value) {
+var _andrewbestbier$elm_adventure_capitalist$Main$formatMoney = function (value) {
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
 		'£',
 		A2(_cuducos$elm_format_number$FormatNumber$format, _cuducos$elm_format_number$FormatNumber_Locales$usLocale, value));
 };
-var _user$project$Main$getProgress = F2(
+var _andrewbestbier$elm_adventure_capitalist$Main$getProgress = F2(
 	function (model, business) {
 		var _p0 = A2(_elm_lang$core$Dict$get, business, model.config);
 		if (_p0.ctor === 'Just') {
@@ -17,7 +17,7 @@ var _user$project$Main$getProgress = F2(
 			return 0;
 		}
 	});
-var _user$project$Main$getQuantity = F2(
+var _andrewbestbier$elm_adventure_capitalist$Main$getQuantity = F2(
 	function (model, business) {
 		var _p1 = A2(_elm_lang$core$Dict$get, business, model.config);
 		if (_p1.ctor === 'Just') {
@@ -26,7 +26,7 @@ var _user$project$Main$getQuantity = F2(
 			return 0;
 		}
 	});
-var _user$project$Main$getProductivity = F2(
+var _andrewbestbier$elm_adventure_capitalist$Main$getProductivity = F2(
 	function (model, business) {
 		var _p2 = A2(_elm_lang$core$Dict$get, business, model.config);
 		if (_p2.ctor === 'Just') {
@@ -35,7 +35,7 @@ var _user$project$Main$getProductivity = F2(
 			return 0;
 		}
 	});
-var _user$project$Main$getCost = F2(
+var _andrewbestbier$elm_adventure_capitalist$Main$getCost = F2(
 	function (model, business) {
 		var _p3 = A2(_elm_lang$core$Dict$get, business, model.config);
 		if (_p3.ctor === 'Just') {
@@ -44,7 +44,7 @@ var _user$project$Main$getCost = F2(
 			return 0;
 		}
 	});
-var _user$project$Main$getProfit = function (model) {
+var _andrewbestbier$elm_adventure_capitalist$Main$getProfit = function (model) {
 	return A3(
 		_elm_lang$core$Dict$foldl,
 		F3(
@@ -54,7 +54,7 @@ var _user$project$Main$getProfit = function (model) {
 		0,
 		model.config);
 };
-var _user$project$Main$update = F2(
+var _andrewbestbier$elm_adventure_capitalist$Main$update = F2(
 	function (msg, model) {
 		var _p4 = msg;
 		if (_p4.ctor === 'Purchase') {
@@ -64,7 +64,7 @@ var _user$project$Main$update = F2(
 				_0: _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						money: model.money - A2(_user$project$Main$getCost, model, _p7),
+						money: model.money - A2(_andrewbestbier$elm_adventure_capitalist$Main$getCost, model, _p7),
 						config: A3(
 							_elm_lang$core$Dict$update,
 							_p7,
@@ -99,13 +99,13 @@ var _user$project$Main$update = F2(
 				_0: _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						money: model.money + _user$project$Main$getProfit(model)
+						money: model.money + _andrewbestbier$elm_adventure_capitalist$Main$getProfit(model)
 					}),
 				_1: _elm_lang$core$Platform_Cmd$none
 			};
 		}
 	});
-var _user$project$Main$baseConfig = _elm_lang$core$Dict$fromList(
+var _andrewbestbier$elm_adventure_capitalist$Main$baseConfig = _elm_lang$core$Dict$fromList(
 	{
 		ctor: '::',
 		_0: {
@@ -179,29 +179,29 @@ var _user$project$Main$baseConfig = _elm_lang$core$Dict$fromList(
 			}
 		}
 	});
-var _user$project$Main$init = {
+var _andrewbestbier$elm_adventure_capitalist$Main$init = {
 	ctor: '_Tuple2',
-	_0: {money: 1, config: _user$project$Main$baseConfig},
+	_0: {money: 1, config: _andrewbestbier$elm_adventure_capitalist$Main$baseConfig},
 	_1: _elm_lang$core$Platform_Cmd$none
 };
-var _user$project$Main$Config = F4(
+var _andrewbestbier$elm_adventure_capitalist$Main$Config = F4(
 	function (a, b, c, d) {
 		return {quantity: a, cost: b, productivity: c, coefficient: d};
 	});
-var _user$project$Main$Model = F2(
+var _andrewbestbier$elm_adventure_capitalist$Main$Model = F2(
 	function (a, b) {
 		return {money: a, config: b};
 	});
-var _user$project$Main$Tick = function (a) {
+var _andrewbestbier$elm_adventure_capitalist$Main$Tick = function (a) {
 	return {ctor: 'Tick', _0: a};
 };
-var _user$project$Main$subscriptions = function (model) {
-	return A2(_elm_lang$core$Time$every, 100 * _elm_lang$core$Time$millisecond, _user$project$Main$Tick);
+var _andrewbestbier$elm_adventure_capitalist$Main$subscriptions = function (model) {
+	return A2(_elm_lang$core$Time$every, 100 * _elm_lang$core$Time$millisecond, _andrewbestbier$elm_adventure_capitalist$Main$Tick);
 };
-var _user$project$Main$Purchase = function (a) {
+var _andrewbestbier$elm_adventure_capitalist$Main$Purchase = function (a) {
 	return {ctor: 'Purchase', _0: a};
 };
-var _user$project$Main$businessDetails = F2(
+var _andrewbestbier$elm_adventure_capitalist$Main$businessDetails = F2(
 	function (model, business) {
 		return A3(
 			_rundis$elm_bootstrap$Bootstrap_Card$block,
@@ -217,8 +217,8 @@ var _user$project$Main$businessDetails = F2(
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'Cost: ',
-								_user$project$Main$formatMoney(
-									A2(_user$project$Main$getCost, model, business)))),
+								_andrewbestbier$elm_adventure_capitalist$Main$formatMoney(
+									A2(_andrewbestbier$elm_adventure_capitalist$Main$getCost, model, business)))),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -234,8 +234,8 @@ var _user$project$Main$businessDetails = F2(
 									'Productivity: ',
 									A2(
 										_elm_lang$core$Basics_ops['++'],
-										_user$project$Main$formatMoney(
-											A2(_user$project$Main$getProductivity, model, business)),
+										_andrewbestbier$elm_adventure_capitalist$Main$formatMoney(
+											A2(_andrewbestbier$elm_adventure_capitalist$Main$getProductivity, model, business)),
 										A2(_elm_lang$core$Basics_ops['++'], '/s ', 'each')))),
 							_1: {ctor: '[]'}
 						}),
@@ -251,7 +251,7 @@ var _user$project$Main$businessDetails = F2(
 										_elm_lang$core$Basics_ops['++'],
 										'Quantity: ',
 										_elm_lang$core$Basics$toString(
-											A2(_user$project$Main$getQuantity, model, business)))),
+											A2(_andrewbestbier$elm_adventure_capitalist$Main$getQuantity, model, business)))),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -290,7 +290,7 @@ var _user$project$Main$businessDetails = F2(
 												{
 													ctor: '::',
 													_0: _rundis$elm_bootstrap$Bootstrap_Progress$value(
-														A2(_user$project$Main$getProgress, model, business)),
+														A2(_andrewbestbier$elm_adventure_capitalist$Main$getProgress, model, business)),
 													_1: {ctor: '[]'}
 												}),
 											_1: {ctor: '[]'}
@@ -306,13 +306,13 @@ var _user$project$Main$businessDetails = F2(
 												_1: {
 													ctor: '::',
 													_0: _rundis$elm_bootstrap$Bootstrap_Button$onClick(
-														_user$project$Main$Purchase(business)),
+														_andrewbestbier$elm_adventure_capitalist$Main$Purchase(business)),
 													_1: {
 														ctor: '::',
 														_0: _rundis$elm_bootstrap$Bootstrap_Button$disabled(
 															_elm_lang$core$Native_Utils.cmp(
 																model.money,
-																A2(_user$project$Main$getCost, model, business)) < 0),
+																A2(_andrewbestbier$elm_adventure_capitalist$Main$getCost, model, business)) < 0),
 														_1: {ctor: '[]'}
 													}
 												}
@@ -365,7 +365,7 @@ var _user$project$Main$businessDetails = F2(
 						_1: {ctor: '[]'}
 					})));
 	});
-var _user$project$Main$view = function (model) {
+var _andrewbestbier$elm_adventure_capitalist$Main$view = function (model) {
 	return A2(
 		_rundis$elm_bootstrap$Bootstrap_Grid$container,
 		{ctor: '[]'},
@@ -411,7 +411,7 @@ var _user$project$Main$view = function (model) {
 									{
 										ctor: '::',
 										_0: _elm_lang$html$Html$text(
-											_user$project$Main$formatMoney(model.money)),
+											_andrewbestbier$elm_adventure_capitalist$Main$formatMoney(model.money)),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -419,31 +419,31 @@ var _user$project$Main$view = function (model) {
 									_0: _rundis$elm_bootstrap$Bootstrap_Card$columns(
 										{
 											ctor: '::',
-											_0: A2(_user$project$Main$businessDetails, model, 'Lemonade Stand'),
+											_0: A2(_andrewbestbier$elm_adventure_capitalist$Main$businessDetails, model, 'Lemonade Stand'),
 											_1: {
 												ctor: '::',
-												_0: A2(_user$project$Main$businessDetails, model, 'Newspaper Delivery'),
+												_0: A2(_andrewbestbier$elm_adventure_capitalist$Main$businessDetails, model, 'Newspaper Delivery'),
 												_1: {
 													ctor: '::',
-													_0: A2(_user$project$Main$businessDetails, model, 'Car Wash'),
+													_0: A2(_andrewbestbier$elm_adventure_capitalist$Main$businessDetails, model, 'Car Wash'),
 													_1: {
 														ctor: '::',
-														_0: A2(_user$project$Main$businessDetails, model, 'Pizza Delivery'),
+														_0: A2(_andrewbestbier$elm_adventure_capitalist$Main$businessDetails, model, 'Pizza Delivery'),
 														_1: {
 															ctor: '::',
-															_0: A2(_user$project$Main$businessDetails, model, 'Donut Shop'),
+															_0: A2(_andrewbestbier$elm_adventure_capitalist$Main$businessDetails, model, 'Donut Shop'),
 															_1: {
 																ctor: '::',
-																_0: A2(_user$project$Main$businessDetails, model, 'Shrimp Boat'),
+																_0: A2(_andrewbestbier$elm_adventure_capitalist$Main$businessDetails, model, 'Shrimp Boat'),
 																_1: {
 																	ctor: '::',
-																	_0: A2(_user$project$Main$businessDetails, model, 'Hockey Team'),
+																	_0: A2(_andrewbestbier$elm_adventure_capitalist$Main$businessDetails, model, 'Hockey Team'),
 																	_1: {
 																		ctor: '::',
-																		_0: A2(_user$project$Main$businessDetails, model, 'Movie Studio'),
+																		_0: A2(_andrewbestbier$elm_adventure_capitalist$Main$businessDetails, model, 'Movie Studio'),
 																		_1: {
 																			ctor: '::',
-																			_0: A2(_user$project$Main$businessDetails, model, 'Bank'),
+																			_0: A2(_andrewbestbier$elm_adventure_capitalist$Main$businessDetails, model, 'Bank'),
 																			_1: {ctor: '[]'}
 																		}
 																	}
@@ -463,5 +463,5 @@ var _user$project$Main$view = function (model) {
 			}
 		});
 };
-var _user$project$Main$main = _elm_lang$html$Html$program(
-	{view: _user$project$Main$view, init: _user$project$Main$init, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
+var _andrewbestbier$elm_adventure_capitalist$Main$main = _elm_lang$html$Html$program(
+	{view: _andrewbestbier$elm_adventure_capitalist$Main$view, init: _andrewbestbier$elm_adventure_capitalist$Main$init, update: _andrewbestbier$elm_adventure_capitalist$Main$update, subscriptions: _andrewbestbier$elm_adventure_capitalist$Main$subscriptions})();
